@@ -126,86 +126,74 @@ const itineraryData = [
             maps: "URL do Google Maps",
             locations: [
                 { name: "Local", url: "URL" }
-            ],
-            transport: [
-                { name: "Transporte", url: "URL" }
-            ]
-        }
-    }
-];
-```
+            # 🇯🇵 Viagem Japão 2026 — PWA
 
-## 📊 Recursos Úteis Incluídos
+            Aplicação Progressive Web App para acompanhar o itinerário da viagem (18 Setembro — 10 Outubro 2026).
 
-A app já inclui links para:
+            Resumo rápido
+            - PWA instalável e offline-ready (após primeira visita)
+            - Mapa interativo por dia com geolocalização e ordenação por proximidade
+            - Conversor EUR ⇄ JPY (bidireccional automático)
+            - Adiciona e remove locais (originais e personalizados) — persistência em `localStorage`
 
-- 🚌 **Willer Express** - Autocarros noturnos
-- ✈️ **Peach Aviation & Jetstar** - Voos low cost
-- 🗺️ **Google Maps** - Todos os locais
-- 🚇 **Tokyo Metro & Hyperdia** - Horários de transportes
-- 🏯 **Locais turísticos** - Links diretos para cada atração
-- 💱 **Conversor de Moeda** - Taxa de câmbio EUR/YEN em tempo real
+            Demo (GitHub Pages)
+            - Site: https://bmorearibeiro.github.io/viagem-japao-2026/
 
-### Sobre o Conversor de Moeda
+            Como usar localmente
+            1. Servidor simples com Python:
 
-O conversor usa a API gratuita da [ExchangeRate-API](https://www.exchangerate-api.com/) para obter taxas atualizadas:
+            ```powershell
+            python -m http.server 8000
 
-- **Atualização Automática**: Quando abres o conversor com internet
-- **Cache Inteligente**: Guarda a última taxa para uso offline
-- **Conversão Bidirecional**: EUR → YEN e YEN → EUR
-- **Valores Rápidos**: Botões para 10€, 20€, 50€, 100€, 500€
-- **Dicas de Câmbio**: Informações sobre cartões, ATMs e IC Cards
+            # depois abre http://localhost:8000
+            ```
 
-### Locais Personalizados
+            2. Ou usa `Live Server` no VS Code ou `http-server` (Node).
 
-Podes adicionar os teus próprios locais a cada dia:
+            Instalar como app (Android)
+            1. Abre a URL no Chrome do telemóvel
+            2. Menu (⋮) → "Adicionar ao ecrã principal" / "Install"
+            3. A app instala e funciona offline depois do primeiro carregamento
 
-1. Abre os detalhes de um dia
-2. Clica em "➕ Adicionar Local Personalizado"
-3. Preenche:
-   - **Nome** (obrigatório): Ex: "Restaurante recomendado pelo Pedro"
-   - **Link** (opcional): URL do Google Maps, site, etc.
-   - **Notas** (opcional): Horários, preços, observações
-4. Os locais são guardados localmente e funcionam offline
-5. Remove locais a qualquer momento com o botão 🗑️
+            Ícones
+            - Os ficheiros `icon-192.png` e `icon-512.png` estão na raiz do projecto e já são usados pelo `manifest.json`.
+            - Se quiseres gerar/atualizar os ícones localmente, há um pequeno gerador e um script `update-icons.bat` (executa para adicionar e push automático).
 
-**Dica**: Os dias com locais personalizados mostram um badge ⭐ com o número de locais
+            Conversor de Moeda
+            - Conversão bidireccional automática: escreve em `EUR` ou `JPY` e verás a conversão imediata abaixo de cada campo.
+            - Quando estás online, a app atualiza a taxa via ExchangeRate-API e guarda a última taxa para uso offline.
 
-### Botão "Abrir Todos os Locais no Mapa"
+            Adicionar/remover locais
+            - Abre os detalhes de um dia e usa "➕ Adicionar Novo Local" para criar locais personalizados.
+            - Todos os locais (originais e personalizados) podem ser removidos com o botão 🗑️ — a alteração é guardada localmente.
 
-Quando um dia tem locais para visitar:
-1. Abre os detalhes do dia
-2. Clica em "🗺️ Abrir Todos os Locais no Mapa"
-3. O Google Maps abre com uma pesquisa de todos os locais do dia
-4. Não é necessária API Key - usa links diretos do Google Maps
+            Estrutura principal
+            ```
+            index.html
+            styles.css
+            app.js
+            sw.js
+            manifest.json
+            icon-192.png
+            icon-512.png
+            README.md
+            ```
 
-## 🐛 Resolução de Problemas
+            Deploy para GitHub Pages
+            1. Puxa/empurra o repositório para `main` no GitHub (já está feito)
+            2. No GitHub: Settings → Pages → Source = `main` branch e `/ (root)`
+            3. Aguarda 1–2 minutos; a página ficará disponível em `https://bmorearibeiro.github.io/viagem-japao-2026/`
 
-### A aplicação não funciona offline
-- Abre a app com internet primeiro para fazer cache
-- Verifica se o Service Worker foi registado (DevTools → Application → Service Workers)
+            Scripts úteis
+            - `update-icons.bat` — adiciona `icon-192.png` e `icon-512.png` e faz commit/push (Windows)
 
-### Taxa de câmbio não atualiza
-- Verifica se estás online
-- A taxa é guardada automaticamente para uso offline
-- Em caso de erro, usa a taxa padrão (~163.50 JPY/EUR)
+            Notas técnicas
+            - O Service Worker (`sw.js`) faz cache estático e permite offline após o primeiro carregamento.
+            - Os mapas usam Leaflet + OpenStreetMap (sem API key).
+            - Todos os dados do utilizador ficam em `localStorage` (sem conta necessária).
 
-### O botão de instalação não aparece
-- Usa HTTPS ou localhost
-- Confirma que o manifest.json está correto
-- Alguns browsers não suportam PWA (ex: Firefox)
+            Se quiseres, posso:
+            - Adicionar um botão no UI para restaurar todos os locais originais removidos
+            - Automatizar o deploy para GitHub Pages via GitHub Actions
 
-## 📝 Notas
-
-- A aplicação destaca automaticamente o dia atual da viagem
-- Todos os dados são armazenados localmente
-- Não requer login ou conta
-- Totalmente gratuita e sem anúncios
-
-## 🎌 Boa Viagem!
-
-Desfruta da tua aventura no Japão! 🗾✨
-
----
-
-**Desenvolvido para a viagem de 18 Setembro - 10 Outubro 2026**
+            Boa viagem! 🎌
