@@ -399,6 +399,24 @@ body {
     resize: vertical;
 }
 
+/* Notes and Accommodation Display/Edit */
+.notes-display,
+.accommodation-display {
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 8px;
+    line-height: 1.6;
+    color: var(--dark);
+}
+
+.notes-edit,
+.accommodation-edit {
+    padding: 1rem;
+    background: #fff9e6;
+    border-radius: 8px;
+    border: 2px dashed var(--accent);
+}
+
 /* Unified Locations List */
 .unified-locations-list {
     display: flex;
@@ -1073,6 +1091,16 @@ body {
 
 .marker-pin.city {
     background: var(--secondary);
+}
+
+.marker-pin.accommodation {
+    background: #9b59b6;
+    width: 35px;
+    height: 45px;
+}
+
+.marker-pin.accommodation span {
+    font-size: 1.2rem;
 }
 
 .marker-pin span {

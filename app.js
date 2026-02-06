@@ -442,6 +442,8 @@ let exchangeRateDate = null;
 let isOnline = navigator.onLine;
 let customLocations = {}; // Armazena locais personalizados por dia
 let removedDefaultLocations = {}; // Armazena índices de locais originais removidos por dia
+let customNotes = {}; // Armazena notas editadas por dia
+let customAccommodations = {}; // Armazena dormidas personalizadas por dia
 let interactiveMap = null;
 let userLocation = null;
 let mapMarkers = [];
@@ -450,6 +452,8 @@ let mapMarkers = [];
 document.addEventListener('DOMContentLoaded', () => {
     loadCustomLocations();
     loadRemovedDefaultLocations();
+    loadCustomNotes();
+    loadCustomAccommodations();
     initializeApp();
     registerServiceWorker();
     setupInstallPrompt();
@@ -624,8 +628,24 @@ function openDayModal(dayNumber) {
         ` : ''}
         
         <div class="links-section">
-            <h3>📝 Atividade</h3>
-            <p>${day.activity}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <h3>📝 Notas</h3>
+                <button onclick="toggleEditNotes(${dayNumber})" class="icon-btn" title="Editar notas">✏️</button>
+            </div>
+            <div id="notesDisplay-${dayNumber}" class="notes-display">
+                ${customNotes[dayNumber] || day.activity}
+            </div>
+            <div id="notesEdit-${dayNumber}" class="notes-edit" style="display: none;">
+                <textarea id="notesText-${dayNumber}" class="form-textarea" rows="4">${customNotes[dayNumber] || day.activity}</textarea>
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                    <button onclick="saveNotes(${dayNumber})" class="link-btn primary" style="flex: 1;">
+                        💾 Guardar
+                    </button>
+                    <button onclick="cancelEditNotes(${dayNumber})" class="link-btn" style="flex: 1; background: #95a5a6;">
+                        ✕ Cancelar
+                    </button>
+                </div>
+            </div>
         </div>
         
         <div class="links-section">
@@ -687,8 +707,33 @@ function openDayModal(dayNumber) {
         </div>
         
         <div class="links-section">
-            <h3>🏨 Dormida</h3>
-            <p>${day.accommodation}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <h3>🏨 Dormida</h3>
+                <button onclick="toggleEditAccommodation(${dayNumber})" class="icon-btn" title="${customAccommodations[dayNumber] ? 'Editar' : 'Adicionar'} dormida">✏️</button>
+            </div>
+            <div id="accommodationDisplay-${dayNumber}" class="accommodation-display">
+                ${customAccommodations[dayNumber] ? `
+                    <p><strong>${customAccommodations[dayNumber].name}</strong></p>
+                    ${customAccommodations[dayNumber].notes ? `<p class="location-notes">${customAccommodations[dayNumber].notes}</p>` : ''}
+                    <div style="margin-top: 0.5rem;">
+                        ${customAccommodations[dayNumber].url ? `<a href="${customAccommodations[dayNumber].url}" target="_blank" class="icon-btn" title="Abrir no Google Maps">🗺️</a>` : ''}
+                        <button onclick="removeAccommodation(${dayNumber})" class="icon-btn delete" title="Remover">🗑️</button>
+                    </div>
+                ` : `<p>${day.accommodation}</p>`}
+            </div>
+            <div id="accommodationEdit-${dayNumber}" class="accommodation-edit" style="display: none;">
+                <input type="text" id="accName-${dayNumber}" placeholder="Nome do local (ex: Hotel, Hostel, Airbnb) *" class="form-input" value="${customAccommodations[dayNumber]?.name || ''}">
+                <input type="text" id="accUrl-${dayNumber}" placeholder="Link do Google Maps (opcional)" class="form-input" value="${customAccommodations[dayNumber]?.url || ''}">
+                <textarea id="accNotes-${dayNumber}" placeholder="Notas: morada, telefone, check-in/out... (opcional)" class="form-textarea" rows="3">${customAccommodations[dayNumber]?.notes || ''}</textarea>
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                    <button onclick="saveAccommodation(${dayNumber})" class="link-btn primary" style="flex: 1;">
+                        💾 Guardar
+                    </button>
+                    <button onclick="cancelEditAccommodation(${dayNumber})" class="link-btn" style="flex: 1; background: #95a5a6;">
+                        ✕ Cancelar
+                    </button>
+                </div>
+            </div>
         </div>
     `;
     
@@ -929,6 +974,113 @@ function closeModal() {
     document.getElementById('dayModal').classList.remove('active');
 }
 
+// Notes Management
+function loadCustomNotes() {
+    const saved = localStorage.getItem('customNotes');
+    if (saved) {
+        try {
+            customNotes = JSON.parse(saved);
+        } catch (e) {
+            console.error('Erro ao carregar notas:', e);
+            customNotes = {};
+        }
+    }
+}
+
+function saveCustomNotes() {
+    localStorage.setItem('customNotes', JSON.stringify(customNotes));
+}
+
+function toggleEditNotes(dayNumber) {
+    const display = document.getElementById(`notesDisplay-${dayNumber}`);
+    const edit = document.getElementById(`notesEdit-${dayNumber}`);
+    display.style.display = 'none';
+    edit.style.display = 'block';
+    document.getElementById(`notesText-${dayNumber}`).focus();
+}
+
+function saveNotes(dayNumber) {
+    const text = document.getElementById(`notesText-${dayNumber}`).value.trim();
+    if (!text) {
+        alert('Por favor, insere as notas!');
+        return;
+    }
+    
+    customNotes[dayNumber] = text;
+    saveCustomNotes();
+    openDayModal(dayNumber);
+}
+
+function cancelEditNotes(dayNumber) {
+    const display = document.getElementById(`notesDisplay-${dayNumber}`);
+    const edit = document.getElementById(`notesEdit-${dayNumber}`);
+    display.style.display = 'block';
+    edit.style.display = 'none';
+}
+
+// Accommodation Management
+function loadCustomAccommodations() {
+    const saved = localStorage.getItem('customAccommodations');
+    if (saved) {
+        try {
+            customAccommodations = JSON.parse(saved);
+        } catch (e) {
+            console.error('Erro ao carregar dormidas:', e);
+            customAccommodations = {};
+        }
+    }
+}
+
+function saveCustomAccommodations() {
+    localStorage.setItem('customAccommodations', JSON.stringify(customAccommodations));
+}
+
+function toggleEditAccommodation(dayNumber) {
+    const display = document.getElementById(`accommodationDisplay-${dayNumber}`);
+    const edit = document.getElementById(`accommodationEdit-${dayNumber}`);
+    display.style.display = 'none';
+    edit.style.display = 'block';
+    document.getElementById(`accName-${dayNumber}`).focus();
+}
+
+function saveAccommodation(dayNumber) {
+    const name = document.getElementById(`accName-${dayNumber}`).value.trim();
+    const url = document.getElementById(`accUrl-${dayNumber}`).value.trim();
+    const notes = document.getElementById(`accNotes-${dayNumber}`).value.trim();
+    
+    if (!name) {
+        alert('Por favor, insere o nome do local de dormida!');
+        return;
+    }
+    
+    customAccommodations[dayNumber] = {
+        name: name,
+        url: url || null,
+        notes: notes || null,
+        addedAt: new Date().toISOString()
+    };
+    
+    saveCustomAccommodations();
+    openDayModal(dayNumber);
+}
+
+function cancelEditAccommodation(dayNumber) {
+    const display = document.getElementById(`accommodationDisplay-${dayNumber}`);
+    const edit = document.getElementById(`accommodationEdit-${dayNumber}`);
+    display.style.display = 'block';
+    edit.style.display = 'none';
+}
+
+function removeAccommodation(dayNumber) {
+    if (!confirm('Tens a certeza que queres remover esta dormida?')) {
+        return;
+    }
+    
+    delete customAccommodations[dayNumber];
+    saveCustomAccommodations();
+    openDayModal(dayNumber);
+}
+
 // Setup Map Modal
 function setupMapModal() {
     const mapModalClose = document.getElementById('mapModalClose');
@@ -958,6 +1110,7 @@ function openDayMap(dayNumber) {
     const day = itineraryData.find(d => d.day === dayNumber);
     const customLocs = customLocations[dayNumber] || [];
     const removedIndices = removedDefaultLocations[dayNumber] || [];
+    const customAccommodation = customAccommodations[dayNumber];
     const mapModal = document.getElementById('mapModal');
     const mapDayTitle = document.getElementById('mapDayTitle');
     
@@ -1023,8 +1176,41 @@ function openDayMap(dayNumber) {
         });
     });
     
+    // Add accommodation (custom or default)
+    let accommodationCoords = null;
+    let accommodationData = null;
+    
+    if (customAccommodation && customAccommodation.url && customAccommodation.url.includes('google.com/maps')) {
+        const coordsMatch = customAccommodation.url.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
+        if (coordsMatch) {
+            accommodationCoords = {
+                lat: parseFloat(coordsMatch[1]),
+                lng: parseFloat(coordsMatch[2])
+            };
+        }
+    }
+    
+    if (!accommodationCoords) {
+        // Use city center with different offset for accommodation
+        accommodationCoords = {
+            lat: day.coordinates.lat + 0.005,
+            lng: day.coordinates.lng + 0.005
+        };
+    }
+    
+    accommodationData = {
+        name: customAccommodation ? customAccommodation.name : day.accommodation,
+        url: customAccommodation?.url || day.links.maps,
+        lat: accommodationCoords.lat,
+        lng: accommodationCoords.lng,
+        type: 'accommodation',
+        notes: customAccommodation?.notes
+    };
+    
+    locations.push(accommodationData);
+    
     // If no specific locations, use city center
-    if (locations.length === 0) {
+    if (locations.length === 1) { // Only accommodation
         locations.push({
             name: day.city,
             url: day.links.maps,
@@ -1066,9 +1252,19 @@ function initializeInteractiveMap(locations, centerCoords, dayNumber) {
     
     // Add markers for each location
     locations.forEach((loc, index) => {
+        let markerHtml;
+        
+        if (loc.type === 'accommodation') {
+            // Special marker for accommodation
+            markerHtml = `<div class="marker-pin accommodation"><span>🏨</span></div>`;
+        } else {
+            // Numbered markers for locations
+            markerHtml = `<div class="marker-pin ${loc.type}"><span>${index + 1}</span></div>`;
+        }
+        
         const icon = L.divIcon({
             className: 'custom-map-marker',
-            html: `<div class="marker-pin ${loc.type}"><span>${index + 1}</span></div>`,
+            html: markerHtml,
             iconSize: [30, 40],
             iconAnchor: [15, 40]
         });
@@ -1081,7 +1277,7 @@ function initializeInteractiveMap(locations, centerCoords, dayNumber) {
         
         const popupContent = `
             <div class="map-popup">
-                <strong>${loc.name}</strong><br>
+                <strong>${loc.name}</strong>${loc.type === 'accommodation' ? ' 🏨' : ''}<br>
                 ${loc.notes ? `<p>${loc.notes}</p>` : ''}
                 <a href="${loc.url}" target="_blank">Abrir no Google Maps →</a>
                 ${deleteBtn}

@@ -1,4 +1,4 @@
-const CACHE_NAME = 'japao-2026-v2';
+const CACHE_NAME = 'japao-2026-v3';
 const urlsToCache = [
     './',
     './index.html',
