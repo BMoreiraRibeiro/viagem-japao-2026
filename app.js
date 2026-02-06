@@ -1237,7 +1237,8 @@ function checkOnlineStatus() {
 function setupConverter() {
     const eurInput = document.getElementById('eurInput');
     const yenInput = document.getElementById('yenInput');
-    const swapBtn = document.getElementById('swapBtn');
+    const eurToYenResult = document.getElementById('eurToYenResult');
+    const yenToEurResult = document.getElementById('yenToEurResult');
     const quickBtns = document.querySelectorAll('.quick-btn');
     
     // Format number with space thousands separator
@@ -1253,37 +1254,41 @@ function setupConverter() {
         return parseFloat(str.replace(/\s/g, '')) || 0;
     }
     
-    // EUR to YEN conversion
+    // Update both conversions
+    function updateConversions() {
+        const eurValue = parseFormattedNumber(eurInput.value);
+        const yenValue = parseFormattedNumber(yenInput.value);
+        
+        // EUR to YEN
+        if (eurValue > 0) {
+            const converted = Math.round(eurValue * exchangeRate);
+            eurToYenResult.textContent = `= ${formatNumber(converted)} ¥`;
+            eurToYenResult.style.display = 'block';
+        } else {
+            eurToYenResult.style.display = 'none';
+        }
+        
+        // YEN to EUR
+        if (yenValue > 0) {
+            const converted = yenValue / exchangeRate;
+            yenToEurResult.textContent = `= ${formatNumber(converted, 2)} €`;
+            yenToEurResult.style.display = 'block';
+        } else {
+            yenToEurResult.style.display = 'none';
+        }
+    }
+    
+    // EUR input
     eurInput.addEventListener('input', (e) => {
-        const cursorPos = e.target.selectionStart;
-        const oldLength = e.target.value.length;
-        
-        const eurValue = parseFormattedNumber(e.target.value);
-        const yenValue = Math.round(eurValue * exchangeRate);
-        yenInput.value = yenValue > 0 ? formatNumber(yenValue) : '';
-        
-        // Preserve cursor position
-        const newLength = e.target.value.length;
-        const newPos = cursorPos + (newLength - oldLength);
-        setTimeout(() => e.target.setSelectionRange(newPos, newPos), 0);
+        updateConversions();
     });
     
-    // YEN to EUR conversion
+    // YEN input
     yenInput.addEventListener('input', (e) => {
-        const cursorPos = e.target.selectionStart;
-        const oldLength = e.target.value.length;
-        
-        const yenValue = parseFormattedNumber(e.target.value);
-        const eurValue = yenValue / exchangeRate;
-        eurInput.value = eurValue > 0 ? formatNumber(eurValue, 2) : '';
-        
-        // Preserve cursor position
-        const newLength = e.target.value.length;
-        const newPos = cursorPos + (newLength - oldLength);
-        setTimeout(() => e.target.setSelectionRange(newPos, newPos), 0);
+        updateConversions();
     });
     
-    // Format on blur to clean up any inconsistencies
+    // Format on blur
     eurInput.addEventListener('blur', (e) => {
         const value = parseFormattedNumber(e.target.value);
         if (value > 0) {
@@ -1298,24 +1303,12 @@ function setupConverter() {
         }
     });
     
-    // Swap button
-    swapBtn.addEventListener('click', () => {
-        const tempEur = parseFormattedNumber(eurInput.value);
-        const tempYen = parseFormattedNumber(yenInput.value);
-        
-        eurInput.value = tempYen > 0 ? formatNumber(tempYen, 2) : '';
-        yenInput.value = tempEur > 0 ? formatNumber(tempEur) : '';
-        
-        // Trigger conversion
-        eurInput.dispatchEvent(new Event('input'));
-    });
-    
     // Quick amount buttons
     quickBtns.forEach(btn => {
         btn.addEventListener('click', () => {
             const amount = btn.dataset.amount;
             eurInput.value = formatNumber(parseFloat(amount), 2);
-            eurInput.dispatchEvent(new Event('input'));
+            updateConversions();
         });
     });
 }

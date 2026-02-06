@@ -738,28 +738,47 @@ body {
     pointer-events: none;
 }
 
-.converter-swap {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.conversion-result {
+    margin-top: 0.75rem;
+    padding: 0.75rem 1rem;
+    background: linear-gradient(135deg, #e8f5e9, #c8e6c9);
+    border-radius: 10px;
+    text-align: center;
+    font-size: 1.3rem;
+    font-weight: bold;
+    color: #2e7d32;
+    display: none;
+    animation: slideIn 0.3s ease;
 }
 
-.swap-btn {
-    background: var(--secondary);
-    color: white;
-    border: none;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.converter-divider {
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--secondary), transparent);
+    margin: 1.5rem 0;
+    position: relative;
+}
+
+.converter-divider::after {
+    content: '⇄';
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    background: white;
+    color: var(--secondary);
     font-size: 1.5rem;
-    cursor: pointer;
-    transition: transform 0.3s, background 0.3s;
-    box-shadow: 0 4px 6px var(--shadow);
-}
-
-.swap-btn:hover {
-    transform: rotate(180deg) scale(1.1);
-    background: #45b8b0;
+    padding: 0 1rem;
 }
 
 .quick-amounts {
