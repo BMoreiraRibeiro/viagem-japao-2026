@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#FF6B6B">
+    <meta name="description" content="Itinerário da viagem ao Japão 2026">
+    <title>🇯🇵 Japão 2026</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json">
+    <link rel="apple-touch-icon" href="icon-192.png">
+    <!-- Leaflet CSS for maps -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <h1>🇯🇵 Japão 2026</h1>
+            <p class="subtitle">18 Set - 10 Out</p>
+            <div class="online-status" id="onlineStatus">
+                <span class="status-dot"></span>
+                <span class="status-text">Online</span>
+            </div>
+        </header>
+
+        <!-- Navigation -->
+        <nav class="nav-tabs">
+            <button class="nav-tab active" data-view="timeline">
+                📅 Itinerário
+            </button>
+            <button class="nav-tab" data-view="converter">
+                💱 Conversor
+            </button>
+            <button class="nav-tab" data-view="info">
+                ℹ️ Info
+            </button>
+        </nav>
+
+        <!-- Main Content -->
+        <main class="content">
+            <!-- Timeline View -->
+            <div id="timelineView" class="view active">
+                <div class="search-bar">
+                    <input type="text" id="searchInput" placeholder="🔍 Procurar dia, local ou atividade...">
+                </div>
+                <div id="daysList" class="days-list"></div>
+            </div>
+
+            <!-- Converter View -->
+            <div id="converterView" class="view">
+                <div class="converter-container">
+                    <div class="converter-header">
+                        <h2>💱 Conversor EUR ⇄ YEN</h2>
+                        <div class="exchange-rate-info" id="exchangeRateInfo">
+                            <span class="rate-status" id="rateStatus">A carregar taxa...</span>
+                            <div class="rate-value" id="rateValue"></div>
+                            <div class="rate-updated" id="rateUpdated"></div>
+                        </div>
+                    </div>
+
+                    <div class="converter-card">
+                        <div class="currency-input">
+                            <label for="eurInput">💶 Euro (EUR)</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="eurInput" placeholder="0.00" step="0.01" min="0">
+                                <span class="currency-symbol">€</span>
+                            </div>
+                        </div>
+
+                        <div class="converter-swap">
+                            <button id="swapBtn" class="swap-btn" title="Trocar moedas">
+                                ⇅
+                            </button>
+                        </div>
+
+                        <div class="currency-input">
+                            <label for="yenInput">💴 Iene Japonês (JPY)</label>
+                            <div class="input-wrapper">
+                                <input type="number" id="yenInput" placeholder="0" step="1" min="0">
+                                <span class="currency-symbol">¥</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-amounts">
+                        <h3>Valores Rápidos:</h3>
+                        <div class="quick-buttons">
+                            <button class="quick-btn" data-amount="10">10€</button>
+                            <button class="quick-btn" data-amount="20">20€</button>
+                            <button class="quick-btn" data-amount="50">50€</button>
+                            <button class="quick-btn" data-amount="100">100€</button>
+                            <button class="quick-btn" data-amount="500">500€</button>
+                        </div>
+                    </div>
+
+                    <div class="converter-tips">
+                        <h3>💡 Dicas de Câmbio:</h3>
+                        <ul>
+                            <li><strong>Cartões:</strong> Usa cartões sem comissões de câmbio (Revolut, N26, Wise)</li>
+                            <li><strong>Dinheiro:</strong> Troca algum antes de ir, mas não muito</li>
+                            <li><strong>ATMs:</strong> 7-Eleven e Post Bank têm taxas baixas</li>
+                            <li><strong>IC Card:</strong> Suica/Pasmo aceitam cartão estrangeiro para recarregar</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Info View -->
+            <div id="infoView" class="view">
+                <div class="info-section">
+                    <h2>💰 Dicas de Poupança</h2>
+                    <div class="tip-card">
+                        <h3>🚌 Autocarro Noturno</h3>
+                        <p>Poupa Shinkansen e uma noite de hotel</p>
+                        <a href="https://willerexpress.com/en/" target="_blank" class="link-btn">
+                            Willer Express →
+                        </a>
+                    </div>
+                    <div class="tip-card">
+                        <h3>✈️ Voos Low Cost</h3>
+                        <p>Para trajetos longos (Nagoya → Kumamoto, Fukuoka → Osaka)</p>
+                        <a href="https://www.flypeach.com/en" target="_blank" class="link-btn">
+                            Peach Aviation →
+                        </a>
+                        <a href="https://www.jetstar.com/jp/en/home" target="_blank" class="link-btn">
+                            Jetstar Japan →
+                        </a>
+                    </div>
+                    <div class="tip-card">
+                        <h3>🚗 Carro em Kumamoto</h3>
+                        <p>Imprescindível para ver as estátuas One Piece</p>
+                        <p><strong>⚠️ Necessária Licença Internacional</strong></p>
+                    </div>
+                    <div class="tip-card">
+                        <h3>💳 Cartão IC (Suica/Pasmo)</h3>
+                        <p>Adiciona à Apple/Google Wallet para metros e compras</p>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h2>🏨 Alojamento (40-60€/noite)</h2>
+                    <div class="accommodation-list">
+                        <div class="acc-item">
+                            <strong>Osaka:</strong> Hotel Relief Namba Daikokucho / Sotetsu Fresa Inn Namba
+                        </div>
+                        <div class="acc-item">
+                            <strong>Kyoto:</strong> Travelodge Kyoto Shijo Omiya / Hop Inn Kyoto
+                        </div>
+                        <div class="acc-item">
+                            <strong>Tóquio:</strong> Hotel Wing International Select / Sakura Hotel (Ikebukuro)
+                        </div>
+                        <div class="acc-item">
+                            <strong>Kumamoto:</strong> Nest Hotel Kumamoto / Dormy Inn (tem Onsen)
+                        </div>
+                        <div class="acc-item">
+                            <strong>Kawaguchiko:</strong> Hotel Asafuji / K's House Mt. Fuji
+                        </div>
+                    </div>
+                </div>
+
+                <div class="info-section">
+                    <h2>🔧 Sobre a App</h2>
+                    <p>Esta aplicação funciona offline! Podes acedê-la sem internet durante a viagem.</p>
+                    <button id="installBtn" class="install-btn" style="display: none;">
+                        📱 Instalar na Home Screen
+                    </button>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Day Detail Modal -->
+    <div id="dayModal" class="modal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">✕</button>
+            <div id="modalBody"></div>
+        </div>
+    </div>
+
+    <!-- Map Modal -->
+    <div id="mapModal" class="modal">
+        <div class="modal-content map-modal-content">
+            <button class="modal-close" id="mapModalClose">✕</button>
+            <div id="mapModalBody">
+                <div class="map-header">
+                    <h2 id="mapDayTitle">Mapa do Dia</h2>
+                    <div class="location-status" id="locationStatus">
+                        <span class="location-icon">📍</span>
+                        <span id="locationText">A obter localização...</span>
+                    </div>
+                </div>
+                <div id="interactiveMap" class="interactive-map"></div>
+                <div class="route-suggestions" id="routeSuggestions">
+                    <h3>📍 Ordem Sugerida de Visita:</h3>
+                    <div id="routeList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+    <!-- Leaflet JS for maps -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+</body>
+</html>

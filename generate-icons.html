@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Gerar Ícone - Japão 2026</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            background: white;
+            padding: 2rem;
+            border-radius: 20px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            text-align: center;
+            max-width: 600px;
+        }
+        h1 {
+            color: #FF6B6B;
+            margin-bottom: 1rem;
+        }
+        .icon-preview {
+            margin: 2rem 0;
+        }
+        canvas {
+            border: 2px solid #ddd;
+            border-radius: 15px;
+            margin: 1rem;
+        }
+        button {
+            background: #FF6B6B;
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            margin: 0.5rem;
+        }
+        button:hover {
+            background: #ff5252;
+        }
+        .instructions {
+            text-align: left;
+            background: #f8f9fa;
+            padding: 1rem;
+            border-radius: 10px;
+            margin-top: 1rem;
+        }
+        .instructions ol {
+            margin: 0.5rem 0;
+            padding-left: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🇯🇵 Gerar Ícones da App</h1>
+        <p>Clica nos botões para descarregar os ícones necessários para a PWA.</p>
+        
+        <div class="icon-preview">
+            <div>
+                <canvas id="icon192" width="192" height="192"></canvas>
+                <div>192x192 pixels</div>
+                <button onclick="downloadIcon(192)">📥 Descarregar icon-192.png</button>
+            </div>
+            <div>
+                <canvas id="icon512" width="512" height="512"></canvas>
+                <div>512x512 pixels</div>
+                <button onclick="downloadIcon(512)">📥 Descarregar icon-512.png</button>
+            </div>
+        </div>
+        
+        <div class="instructions">
+            <h3>📝 Instruções:</h3>
+            <ol>
+                <li>Clica nos botões acima para descarregar os ícones</li>
+                <li>Guarda os ficheiros na mesma pasta da aplicação</li>
+                <li>Os nomes devem ser exatamente: <code>icon-192.png</code> e <code>icon-512.png</code></li>
+                <li>Se quiseres personalizar, podes editar este ficheiro ou usar o teu próprio design</li>
+            </ol>
+        </div>
+    </div>
+
+    <script>
+        function drawIcon(canvas, size) {
+            const ctx = canvas.getContext('2d');
+            
+            // Background gradient
+            const gradient = ctx.createLinearGradient(0, 0, size, size);
+            gradient.addColorStop(0, '#FF6B6B');
+            gradient.addColorStop(1, '#ff8787');
+            ctx.fillStyle = gradient;
+            ctx.fillRect(0, 0, size, size);
+            
+            // White circle background
+            ctx.fillStyle = 'white';
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/3, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Red circle (Japan flag style)
+            ctx.fillStyle = '#BC002D';
+            ctx.beginPath();
+            ctx.arc(size/2, size/2, size/5, 0, Math.PI * 2);
+            ctx.fill();
+            
+            // Text
+            ctx.fillStyle = 'white';
+            ctx.font = `bold ${size/8}px Arial`;
+            ctx.textAlign = 'center';
+            ctx.textBaseline = 'middle';
+            
+            // Year text at bottom
+            ctx.fillText('2026', size/2, size * 0.85);
+            
+            // Top text
+            ctx.font = `bold ${size/12}px Arial`;
+            ctx.fillText('JAPÃO', size/2, size * 0.15);
+        }
+        
+        // Draw both icons on page load
+        window.onload = function() {
+            drawIcon(document.getElementById('icon192'), 192);
+            drawIcon(document.getElementById('icon512'), 512);
+        };
+        
+        function downloadIcon(size) {
+            const canvas = document.getElementById(`icon${size}`);
+            const link = document.createElement('a');
+            link.download = `icon-${size}.png`;
+            link.href = canvas.toDataURL('image/png');
+            link.click();
+        }
+    </script>
+</body>
+</html>
