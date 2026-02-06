@@ -454,6 +454,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadRemovedDefaultLocations();
     loadCustomNotes();
     loadCustomAccommodations();
+    loadDarkMode();
     initializeApp();
     registerServiceWorker();
     setupInstallPrompt();
@@ -463,6 +464,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 function initializeApp() {
     setupNavigation();
+    setupDarkModeToggle();
     renderDaysList();
     setupSearch();
     setupModal();
@@ -641,7 +643,7 @@ function openDayModal(dayNumber) {
                     <button onclick="saveNotes(${dayNumber})" class="link-btn primary" style="flex: 1;">
                         💾 Guardar
                     </button>
-                    <button onclick="cancelEditNotes(${dayNumber})" class="link-btn" style="flex: 1; background: #95a5a6;">
+                    <button onclick="cancelEditNotes(${dayNumber})" class="link-btn cancel" style="flex: 1;">
                         ✕ Cancelar
                     </button>
                 </div>
@@ -693,7 +695,7 @@ function openDayModal(dayNumber) {
                     <button onclick="saveCustomLocation(${dayNumber})" class="link-btn primary" style="flex: 1;">
                         💾 Guardar Local
                     </button>
-                    <button onclick="hideAddLocationForm(${dayNumber})" class="link-btn" style="flex: 1; background: #95a5a6;">
+                    <button onclick="hideAddLocationForm(${dayNumber})" class="link-btn cancel" style="flex: 1;">
                         ✕ Cancelar
                     </button>
                 </div>
@@ -729,7 +731,7 @@ function openDayModal(dayNumber) {
                     <button onclick="saveAccommodation(${dayNumber})" class="link-btn primary" style="flex: 1;">
                         💾 Guardar
                     </button>
-                    <button onclick="cancelEditAccommodation(${dayNumber})" class="link-btn" style="flex: 1; background: #95a5a6;">
+                    <button onclick="cancelEditAccommodation(${dayNumber})" class="link-btn cancel" style="flex: 1;">
                         ✕ Cancelar
                     </button>
                 </div>
@@ -1079,6 +1081,45 @@ function removeAccommodation(dayNumber) {
     delete customAccommodations[dayNumber];
     saveCustomAccommodations();
     openDayModal(dayNumber);
+}
+
+// Dark Mode Management
+function loadDarkMode() {
+    const darkMode = localStorage.getItem('darkMode');
+    if (darkMode === 'enabled') {
+        document.body.classList.add('dark-mode');
+        updateDarkModeIcon();
+    }
+}
+
+function setupDarkModeToggle() {
+    const toggle = document.getElementById('darkModeToggle');
+    if (!toggle) return; // Sair se o botão não existir
+    
+    toggle.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        
+        if (document.body.classList.contains('dark-mode')) {
+            localStorage.setItem('darkMode', 'enabled');
+        } else {
+            localStorage.setItem('darkMode', 'disabled');
+        }
+        
+        updateDarkModeIcon();
+    });
+}
+
+function updateDarkModeIcon() {
+    const toggle = document.getElementById('darkModeToggle');
+    if (!toggle) return; // Sair se o botão não existir
+    
+    if (document.body.classList.contains('dark-mode')) {
+        toggle.textContent = '☀️';
+        toggle.title = 'Alternar para tema claro';
+    } else {
+        toggle.textContent = '🌙';
+        toggle.title = 'Alternar para tema escuro';
+    }
 }
 
 // Setup Map Modal
