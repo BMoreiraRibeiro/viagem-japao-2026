@@ -469,6 +469,8 @@ function initializeApp() {
     setupSearch();
     setupModal();
     setupConverter();
+    setupDaySelector();
+    highlightCurrentDay();
     checkOnlineStatus();
     
     // Update online status
@@ -547,6 +549,76 @@ function getCurrentDay() {
     const diffTime = today - startDate;
     const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
     return diffDays >= 1 && diffDays <= 23 ? diffDays : null;
+}
+
+// Day Selector
+function setupDaySelector() {
+    const daySelect = document.getElementById('daySelect');
+    const currentDayBtn = document.getElementById('currentDayBtn');
+    
+    // Populate day selector
+    itineraryData.forEach(day => {
+        const option = document.createElement('option');
+        option.value = day.day;
+        option.textContent = `Dia ${day.day} - ${day.date} - ${day.title}`;
+        daySelect.appendChild(option);
+    });
+    
+    // Day select change event
+    daySelect.addEventListener('change', (e) => {
+        const dayNumber = parseInt(e.target.value);
+        if (dayNumber) {
+            goToDay(dayNumber);
+            e.target.value = ''; // Reset selector
+        }
+    });
+    
+    // Current day button
+    const currentDay = getCurrentDay();
+    if (currentDay) {
+        currentDayBtn.disabled = false;
+        currentDayBtn.addEventListener('click', () => {
+            goToDay(currentDay);
+        });
+    } else {
+        currentDayBtn.disabled = true;
+        currentDayBtn.title = 'Fora do período da viagem';
+    }
+}
+
+function goToDay(dayNumber) {
+    // First scroll to the day card
+    const dayCards = document.querySelectorAll('.day-card');
+    const targetCard = dayCards[dayNumber - 1];
+    
+    if (targetCard) {
+        targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        
+        // Add a temporary highlight animation
+        targetCard.classList.add('pulse-highlight');
+        setTimeout(() => {
+            targetCard.classList.remove('pulse-highlight');
+        }, 2000);
+        
+        // Open the modal after scrolling
+        setTimeout(() => {
+            openDayModal(dayNumber);
+        }, 500);
+    }
+}
+
+function highlightCurrentDay() {
+    const currentDay = getCurrentDay();
+    if (currentDay) {
+        // Scroll to current day on page load
+        setTimeout(() => {
+            const dayCards = document.querySelectorAll('.day-card');
+            const currentCard = dayCards[currentDay - 1];
+            if (currentCard) {
+                currentCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+        }, 300);
+    }
 }
 
 // Search
