@@ -37,19 +37,19 @@ const itineraryData = [
     {
         day: 3,
         date: "20/set",
-        title: "Universal Studios Japan",
-        activity: "USJ - Parque Temático",
-        transport: "Comboio Local (JR Yumesaki Line)",
+        title: "Himeji Castle",
+        activity: "Visita ao Castelo Himeji (Experiência Shinkansen)",
+        transport: "🚄 Shinkansen (Útil e Veloz)",
         accommodation: "Osaka (Namba)",
-        city: "Osaka",
-        coordinates: { lat: 34.6654, lng: 135.4322 },
+        city: "Himeji",
+        coordinates: { lat: 34.8394, lng: 134.6939 },
         links: {
-            maps: "https://www.google.com/maps/place/Universal+Studios+Japan",
+            maps: "https://www.google.com/maps/place/Himeji+Castle",
             locations: [
-                { name: "Universal Studios Japan", url: "https://www.usj.co.jp/web/en/us" }
+                { name: "Himeji Castle", url: "https://www.google.com/maps/place/Himeji+Castle" }
             ],
             transport: [
-                { name: "Como chegar ao USJ", url: "https://www.usj.co.jp/web/en/us/access" }
+                { name: "Shinkansen Osaka-Himeji", url: "https://www.hyperdia.com/" }
             ]
         }
     },
@@ -381,19 +381,19 @@ const itineraryData = [
     {
         day: 21,
         date: "08/out",
-        title: "Himeji Castle",
-        activity: "Visita ao Castelo Himeji (Experiência Shinkansen)",
-        transport: "🚄 Shinkansen (Útil e Veloz)",
+        title: "Universal Studios Japan",
+        activity: "USJ - Parque Temático",
+        transport: "Comboio Local (JR Yumesaki Line)",
         accommodation: "Osaka (Namba)",
-        city: "Himeji",
-        coordinates: { lat: 34.8394, lng: 134.6939 },
+        city: "Osaka",
+        coordinates: { lat: 34.6654, lng: 135.4322 },
         links: {
-            maps: "https://www.google.com/maps/place/Himeji+Castle",
+            maps: "https://www.google.com/maps/place/Universal+Studios+Japan",
             locations: [
-                { name: "Himeji Castle", url: "https://www.google.com/maps/place/Himeji+Castle" }
+                { name: "Universal Studios Japan", url: "https://www.usj.co.jp/web/en/us" }
             ],
             transport: [
-                { name: "Shinkansen Osaka-Himeji", url: "https://www.hyperdia.com/" }
+                { name: "Como chegar ao USJ", url: "https://www.usj.co.jp/web/en/us/access" }
             ]
         }
     },

@@ -10,7 +10,7 @@
 | :--- | :--- | :--- | :--- | :--- |
 | **1** | 18/set | Madrid → Osaka (Voo Internacional) | ✈️ Avião | Noite a bordo |
 | **2** | 19/set | Chegada, **The Much Café** e Dotonbori | Nankai Rap:t (Comboio Aeroporto) | Osaka (Namba) |
-| **3** | 20/set | **Universal Studios Japan (USJ)** | Comboio Local (JR Yumesaki Line) | Osaka (Namba) |
+| **3** | 20/set | **Himeji Castle (A Experiência!)** | **🚄 Shinkansen** (Útil e Veloz) | Osaka (Namba) |
 | **4** | 21/set | **Nijigen no Mori** (Naruto/Godzilla) | Autocarro Direto (Namba/Umeda) | Osaka (Namba) |
 | **5** | 22/set | **Kyoto**: Gion e Pontocho | JR Special Rapid (Comboio Local) | Kyoto |
 | **6** | 23/set | **Nara** (Veados) e **Fushimi Inari** | Comboios Locais (JR ou Kintetsu) | Kyoto |
@@ -28,7 +28,7 @@
 | **18** | 05/out | Viagem para **Beppu** (Onsens/Termas) | Autocarro Kyushuganko (Barato) | Beppu |
 | **19** | 06/out | Beppu → **Fukuoka** (Hakata Ramen) | Autocarro Highway (Lush Bus) | Fukuoka |
 | **20** | 07/out | Fukuoka → **Osaka** | **✈️ Voo Low Cost** (Peach/Jetstar) | Osaka (Namba) |
-| **21** | 08/out | **Himeji Castle (A Experiência!)** | **🚄 Shinkansen** (Útil e Veloz) | Osaka (Namba) |
+| **21** | 08/out | **Universal Studios Japan (USJ)** | Comboio Local (JR Yumesaki Line) | Osaka (Namba) |
 | **22** | 09/out | Den Den Town e **Padaria Parine** | Metro | Osaka (Namba) |
 | **23** | 10/out | Osaka → Madrid | Nankai Rap:t | Fim da Viagem |
 
