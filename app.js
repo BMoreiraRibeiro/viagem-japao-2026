@@ -3,14 +3,15 @@ const itineraryData = [
     {
         day: 1,
         date: "18/set",
-        title: "Madrid → Osaka",
-        activity: "Voo Internacional",
-        transport: "✈️ Avião",
-        accommodation: "Noite a bordo",
-        city: "Madrid/Osaka",
+        title: "Fukuoka → Osaka",
+        activity: "Regresso a Osaka",
+        transport: "✈️ Voo Low Cost (Peach/Jetstar)",
+        accommodation: "Osaka (Namba)",
+        city: "Osaka",
         coordinates: { lat: 34.6937, lng: 135.5023 },
         links: {
-            maps: "https://www.google.com/maps/place/Osaka,+Japan",
+            maps: "https://www.google.com/maps/place/Osaka",
+            locations: [],
             transport: []
         }
     },
@@ -363,19 +364,15 @@ const itineraryData = [
     {
         day: 20,
         date: "07/out",
-        title: "Fukuoka → Osaka",
-        activity: "Regresso a Osaka",
-        transport: "✈️ Voo Low Cost (Peach/Jetstar)",
-        accommodation: "Osaka (Namba)",
-        city: "Osaka",
+        title: "Madrid → Osaka",
+        activity: "Voo Internacional",
+        transport: "✈️ Avião",
+        accommodation: "Noite a bordo",
+        city: "Madrid/Osaka",
         coordinates: { lat: 34.6937, lng: 135.5023 },
         links: {
-            maps: "https://www.google.com/maps/place/Osaka",
-            locations: [],
-            transport: [
-                { name: "Peach Aviation", url: "https://www.flypeach.com/en" },
-                { name: "Jetstar Japan", url: "https://www.jetstar.com/jp/en/home" }
-            ]
+            maps: "https://www.google.com/maps/place/Osaka,+Japan",
+            transport: []
         }
     },
     {
@@ -444,6 +441,7 @@ let customLocations = {}; // Armazena locais personalizados por dia
 let removedDefaultLocations = {}; // Armazena índices de locais originais removidos por dia
 let customNotes = {}; // Armazena notas editadas por dia
 let customAccommodations = {}; // Armazena dormidas personalizadas por dia
+let customAccommodationLocations = {}; // Armazena locais extra associados à dormida por dia
 let interactiveMap = null;
 let userLocation = null;
 let mapMarkers = [];
@@ -454,6 +452,7 @@ document.addEventListener('DOMContentLoaded', () => {
     loadRemovedDefaultLocations();
     loadCustomNotes();
     loadCustomAccommodations();
+    loadCustomAccommodationLocations();
     loadDarkMode();
     initializeApp();
     registerServiceWorker();
@@ -512,9 +511,13 @@ function switchView(view) {
 }
 
 // Render Days List
+function getSortedItineraryData(data = itineraryData) {
+    return [...data].sort((a, b) => a.day - b.day);
+}
+
 function renderDaysList(filteredData = null) {
     const daysList = document.getElementById('daysList');
-    const data = filteredData || itineraryData;
+    const data = getSortedItineraryData(filteredData || itineraryData);
     
     daysList.innerHTML = data.map(day => {
         const hasCustomLocations = customLocations[day.day] && customLocations[day.day].length > 0;
@@ -526,7 +529,7 @@ function renderDaysList(filteredData = null) {
         const totalCount = originalCount + customCount;
         
         return `
-        <div class="day-card ${day.day === getCurrentDay() ? 'highlight' : ''}" onclick="openDayModal(${day.day})">
+        <div class="day-card ${day.day === getCurrentDay() ? 'highlight' : ''}" data-day="${day.day}" onclick="openDayModal(${day.day})">
             <div class="day-header">
                 <div class="day-number">D${day.day}</div>
                 <div class="day-date">${day.date}</div>
@@ -557,7 +560,7 @@ function setupDaySelector() {
     const currentDayBtn = document.getElementById('currentDayBtn');
     
     // Populate day selector
-    itineraryData.forEach(day => {
+    getSortedItineraryData().forEach(day => {
         const option = document.createElement('option');
         option.value = day.day;
         option.textContent = `Dia ${day.day} - ${day.date} - ${day.title}`;
@@ -587,9 +590,7 @@ function setupDaySelector() {
 }
 
 function goToDay(dayNumber) {
-    // First scroll to the day card
-    const dayCards = document.querySelectorAll('.day-card');
-    const targetCard = dayCards[dayNumber - 1];
+    const targetCard = document.querySelector(`.day-card[data-day="${dayNumber}"]`);
     
     if (targetCard) {
         targetCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -612,8 +613,7 @@ function highlightCurrentDay() {
     if (currentDay) {
         // Scroll to current day on page load
         setTimeout(() => {
-            const dayCards = document.querySelectorAll('.day-card');
-            const currentCard = dayCards[currentDay - 1];
+            const currentCard = document.querySelector(`.day-card[data-day="${currentDay}"]`);
             if (currentCard) {
                 currentCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
             }
@@ -657,9 +657,11 @@ function openDayModal(dayNumber) {
     const day = itineraryData.find(d => d.day === dayNumber);
     const modal = document.getElementById('dayModal');
     const modalBody = document.getElementById('modalBody');
+    const availableDays = getSortedItineraryData().filter(item => item.day !== dayNumber);
     
     // Get custom locations for this day
     const customLocs = customLocations[dayNumber] || [];
+    const accommodationLocs = customAccommodationLocations[dayNumber] || [];
     
     // Get removed default locations indices
     const removedIndices = removedDefaultLocations[dayNumber] || [];
@@ -690,6 +692,22 @@ function openDayModal(dayNumber) {
             <div class="modal-day-title">Dia ${day.day}: ${day.title}</div>
             <div class="modal-day-info">
                 📅 ${day.date} | 📍 ${day.city}
+            </div>
+        </div>
+
+        <div class="links-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; gap: 0.75rem; flex-wrap: wrap;">
+                <h3>🔁 Mover card</h3>
+                <button onclick="moveDayCard(${dayNumber})" class="link-btn primary" style="padding: 0.6rem 1rem;">
+                    🔁 Trocar de dia
+                </button>
+            </div>
+            <div style="margin-top: 0.75rem;">
+                <label for="moveDaySelect-${dayNumber}" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: var(--text-primary);">Mover este card para:</label>
+                <select id="moveDaySelect-${dayNumber}" class="day-select" style="width: 100%;">
+                    <option value="">Selecionar novo dia...</option>
+                    ${availableDays.map(item => `<option value="${item.day}">Dia ${item.day} - ${item.date} - ${item.title}</option>`).join('')}
+                </select>
             </div>
         </div>
         
@@ -795,6 +813,43 @@ function openDayModal(dayNumber) {
                     </div>
                 ` : `<p>${day.accommodation}</p>`}
             </div>
+            <div style="margin-top: 1rem;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem; gap: 0.5rem; flex-wrap: wrap;">
+                    <h4 style="margin: 0; color: var(--text-primary);">📍 Locais da Dormida</h4>
+                    <button onclick="showAddAccommodationLocationForm(${dayNumber})" class="link-btn" style="padding: 0.5rem 0.8rem; margin: 0;">
+                        ➕ Adicionar Local
+                    </button>
+                </div>
+                <div id="accommodationLocationsList-${dayNumber}" class="unified-locations-list">
+                    ${accommodationLocs.length > 0 ? accommodationLocs.map((loc, index) => `
+                        <div class="unified-location-item custom">
+                            <div class="location-number">${index + 1}</div>
+                            <div class="unified-location-info">
+                                <strong>${loc.name}</strong>
+                                ${loc.notes ? `<p class="location-notes">${loc.notes}</p>` : ''}
+                                <span class="location-badge custom">Dormida</span>
+                            </div>
+                            <div class="unified-location-actions">
+                                ${loc.url ? `<a href="${loc.url}" target="_blank" class="icon-btn" title="Abrir no Google Maps">🗺️</a>` : ''}
+                                <button onclick="removeAccommodationLocation(${dayNumber}, ${index})" class="icon-btn delete" title="Remover">🗑️</button>
+                            </div>
+                        </div>
+                    `).join('') : `<p class="location-notes" style="margin: 0;">Sem locais extra associados à dormida.</p>`}
+                </div>
+                <div id="accommodationLocationForm-${dayNumber}" class="add-location-form" style="display: none; margin-top: 0.75rem;">
+                    <input type="text" id="accLocName-${dayNumber}" placeholder="Nome do local *" class="form-input">
+                    <input type="text" id="accLocUrl-${dayNumber}" placeholder="Link do Google Maps (opcional)" class="form-input">
+                    <textarea id="accLocNotes-${dayNumber}" placeholder="Notas: horários, detalhes, dicas... (opcional)" class="form-textarea" rows="3"></textarea>
+                    <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                        <button onclick="saveAccommodationLocation(${dayNumber})" class="link-btn primary" style="flex: 1;">
+                            💾 Guardar Local
+                        </button>
+                        <button onclick="hideAddAccommodationLocationForm(${dayNumber})" class="link-btn cancel" style="flex: 1;">
+                            ✕ Cancelar
+                        </button>
+                    </div>
+                </div>
+            </div>
             <div id="accommodationEdit-${dayNumber}" class="accommodation-edit" style="display: none;">
                 <input type="text" id="accName-${dayNumber}" placeholder="Nome do local (ex: Hotel, Hostel, Airbnb) *" class="form-input" value="${customAccommodations[dayNumber]?.name || ''}">
                 <input type="text" id="accUrl-${dayNumber}" placeholder="Link do Google Maps (opcional)" class="form-input" value="${customAccommodations[dayNumber]?.url || ''}">
@@ -882,6 +937,71 @@ function openAllLocationsInMap(dayNumber) {
     
     // Show notification
     alert(`📍 A abrir ${locations.length} locais no mapa!\n\nDica: Para ver todos os locais num único mapa, podes usar Google My Maps para criar um mapa personalizado.`);
+}
+
+function moveDayCard(dayNumber) {
+    const select = document.getElementById(`moveDaySelect-${dayNumber}`);
+    const targetDay = parseInt(select.value, 10);
+
+    if (!targetDay) {
+        alert('Seleciona primeiro o dia de destino.');
+        return;
+    }
+
+    if (targetDay === dayNumber) {
+        return;
+    }
+
+    const sourceIndex = itineraryData.findIndex(day => day.day === dayNumber);
+    const targetIndex = itineraryData.findIndex(day => day.day === targetDay);
+
+    if (sourceIndex === -1 || targetIndex === -1) {
+        alert('Não foi possível encontrar um dos dias.');
+        return;
+    }
+
+    const sourceDay = itineraryData[sourceIndex];
+    const targetDayData = itineraryData[targetIndex];
+
+    const sourceDayCustomLocations = customLocations[dayNumber];
+    const targetDayCustomLocations = customLocations[targetDay];
+    const sourceDayRemoved = removedDefaultLocations[dayNumber];
+    const targetDayRemoved = removedDefaultLocations[targetDay];
+    const sourceDayNotes = customNotes[dayNumber];
+    const targetDayNotes = customNotes[targetDay];
+    const sourceDayAccommodation = customAccommodations[dayNumber];
+    const targetDayAccommodation = customAccommodations[targetDay];
+
+    itineraryData[sourceIndex] = { ...targetDayData, day: dayNumber };
+    itineraryData[targetIndex] = { ...sourceDay, day: targetDay };
+
+    if (sourceDayCustomLocations || targetDayCustomLocations) {
+        customLocations[dayNumber] = targetDayCustomLocations;
+        customLocations[targetDay] = sourceDayCustomLocations;
+    }
+
+    if (sourceDayRemoved || targetDayRemoved) {
+        removedDefaultLocations[dayNumber] = targetDayRemoved;
+        removedDefaultLocations[targetDay] = sourceDayRemoved;
+    }
+
+    if (sourceDayNotes || targetDayNotes) {
+        customNotes[dayNumber] = targetDayNotes;
+        customNotes[targetDay] = sourceDayNotes;
+    }
+
+    if (sourceDayAccommodation || targetDayAccommodation) {
+        customAccommodations[dayNumber] = targetDayAccommodation;
+        customAccommodations[targetDay] = sourceDayAccommodation;
+    }
+
+    saveCustomLocations();
+    saveRemovedDefaultLocations();
+    saveCustomNotes();
+    saveCustomAccommodations();
+
+    renderDaysList();
+    openDayModal(dayNumber);
 }
 
 function showAddLocationForm(dayNumber) {
@@ -1109,6 +1229,22 @@ function saveCustomAccommodations() {
     localStorage.setItem('customAccommodations', JSON.stringify(customAccommodations));
 }
 
+function loadCustomAccommodationLocations() {
+    const saved = localStorage.getItem('customAccommodationLocations');
+    if (saved) {
+        try {
+            customAccommodationLocations = JSON.parse(saved);
+        } catch (e) {
+            console.error('Erro ao carregar locais da dormida:', e);
+            customAccommodationLocations = {};
+        }
+    }
+}
+
+function saveCustomAccommodationLocations() {
+    localStorage.setItem('customAccommodationLocations', JSON.stringify(customAccommodationLocations));
+}
+
 function toggleEditAccommodation(dayNumber) {
     const display = document.getElementById(`accommodationDisplay-${dayNumber}`);
     const edit = document.getElementById(`accommodationEdit-${dayNumber}`);
@@ -1152,6 +1288,60 @@ function removeAccommodation(dayNumber) {
     
     delete customAccommodations[dayNumber];
     saveCustomAccommodations();
+    openDayModal(dayNumber);
+}
+
+function showAddAccommodationLocationForm(dayNumber) {
+    const form = document.getElementById(`accommodationLocationForm-${dayNumber}`);
+    form.style.display = 'block';
+    document.getElementById(`accLocName-${dayNumber}`).focus();
+}
+
+function hideAddAccommodationLocationForm(dayNumber) {
+    const form = document.getElementById(`accommodationLocationForm-${dayNumber}`);
+    form.style.display = 'none';
+    document.getElementById(`accLocName-${dayNumber}`).value = '';
+    document.getElementById(`accLocUrl-${dayNumber}`).value = '';
+    document.getElementById(`accLocNotes-${dayNumber}`).value = '';
+}
+
+function saveAccommodationLocation(dayNumber) {
+    const name = document.getElementById(`accLocName-${dayNumber}`).value.trim();
+    const url = document.getElementById(`accLocUrl-${dayNumber}`).value.trim();
+    const notes = document.getElementById(`accLocNotes-${dayNumber}`).value.trim();
+
+    if (!name) {
+        alert('Por favor, insere o nome do local!');
+        return;
+    }
+
+    if (!customAccommodationLocations[dayNumber]) {
+        customAccommodationLocations[dayNumber] = [];
+    }
+
+    customAccommodationLocations[dayNumber].push({
+        name: name,
+        url: url || null,
+        notes: notes || null,
+        addedAt: new Date().toISOString()
+    });
+
+    saveCustomAccommodationLocations();
+    openDayModal(dayNumber);
+}
+
+function removeAccommodationLocation(dayNumber, index) {
+    if (!confirm('Tens a certeza que queres remover este local da dormida?')) {
+        return;
+    }
+
+    customAccommodationLocations[dayNumber].splice(index, 1);
+
+    if (customAccommodationLocations[dayNumber].length === 0) {
+        delete customAccommodationLocations[dayNumber];
+    }
+
+    saveCustomAccommodationLocations();
     openDayModal(dayNumber);
 }
 
@@ -1224,6 +1414,7 @@ function openDayMap(dayNumber) {
     const customLocs = customLocations[dayNumber] || [];
     const removedIndices = removedDefaultLocations[dayNumber] || [];
     const customAccommodation = customAccommodations[dayNumber];
+    const accommodationLocs = customAccommodationLocations[dayNumber] || [];
     const mapModal = document.getElementById('mapModal');
     const mapDayTitle = document.getElementById('mapDayTitle');
     
@@ -1321,6 +1512,38 @@ function openDayMap(dayNumber) {
     };
     
     locations.push(accommodationData);
+
+    // Add extra accommodation-linked locations
+    accommodationLocs.forEach((loc, index) => {
+        let coords = null;
+
+        if (loc.url && loc.url.includes('google.com/maps')) {
+            const coordsMatch = loc.url.match(/@(-?\d+\.\d+),(-?\d+\.\d+)/);
+            if (coordsMatch) {
+                coords = {
+                    lat: parseFloat(coordsMatch[1]),
+                    lng: parseFloat(coordsMatch[2])
+                };
+            }
+        }
+
+        if (!coords) {
+            coords = {
+                lat: day.coordinates.lat + 0.007 + (index * 0.001),
+                lng: day.coordinates.lng + 0.007 + (index * 0.001)
+            };
+        }
+
+        locations.push({
+            name: loc.name,
+            url: loc.url || day.links.maps,
+            lat: coords.lat,
+            lng: coords.lng,
+            type: 'accommodation-location',
+            notes: loc.notes,
+            accommodationIndex: index
+        });
+    });
     
     // If no specific locations, use city center
     if (locations.length === 1) { // Only accommodation
