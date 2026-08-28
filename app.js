@@ -451,6 +451,22 @@ function getDisplayTransport(day) {
     return customTransports[day.day] || day.transport;
 }
 
+function getDisplayAccommodation(day) {
+    return customAccommodations[day.day]?.name || day.accommodation;
+}
+
+function getAccommodationLocationSummary(day) {
+    const links = customAccommodationLocations[day.day] || [];
+    if (!links.length) {
+        return '';
+    }
+
+    const names = links.slice(0, 2).map(loc => loc.name);
+    const remaining = links.length - names.length;
+    const suffix = remaining > 0 ? ` +${remaining}` : '';
+    return `📍 ${names.join(' • ')}${suffix}`;
+}
+
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
     loadCustomLocations();
@@ -531,6 +547,8 @@ function renderDaysList(filteredData = null) {
         const customCount = hasCustomLocations ? customLocations[day.day].length : 0;
         const displayTitle = escapeHtml(getDisplayTitle(day));
         const displayTransport = escapeHtml(getDisplayTransport(day));
+        const displayAccommodation = escapeHtml(getDisplayAccommodation(day));
+        const accommodationLocationSummary = escapeHtml(getAccommodationLocationSummary(day));
         
         // Count removed default locations
         const removedIndices = removedDefaultLocations[day.day] || [];
@@ -550,6 +568,8 @@ function renderDaysList(filteredData = null) {
             </div>
             <div class="day-location">📍 ${day.city}</div>
             <div class="day-transport">${displayTransport}</div>
+            <div class="day-accommodation">🏨 ${displayAccommodation}</div>
+            ${accommodationLocationSummary ? `<div class="day-hotel-locations">${accommodationLocationSummary}</div>` : ''}
         </div>
     `}).join('');
 }
