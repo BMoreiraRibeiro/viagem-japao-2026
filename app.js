@@ -3,10 +3,10 @@ const itineraryData = [
     {
         day: 1,
         date: "18/set",
-        title: "Fukuoka → Osaka",
-        activity: "Regresso a Osaka",
-        transport: "✈️ Voo Low Cost (Peach/Jetstar)",
-        accommodation: "Osaka (Namba)",
+        title: "Madrid → Osaka (Voo Internacional)",
+        activity: "Voo Internacional",
+        transport: "✈️ Voo Internacional",
+        accommodation: "✈️ Noite a bordo",
         city: "Osaka",
         coordinates: { lat: 34.6937, lng: 135.5023 },
         links: {
@@ -18,10 +18,10 @@ const itineraryData = [
     {
         day: 2,
         date: "19/set",
-        title: "Chegada a Osaka",
+        title: "Chegada → The Much Café → Dotonbori",
         activity: "The Much Café e Dotonbori",
-        transport: "Nankai Rap:t (Comboio Aeroporto)",
-        accommodation: "Osaka (Namba)",
+        transport: "🚆 Nankai Airport Express → Shin-Imamiya",
+        accommodation: "KATSU HOTEL 新今宫",
         city: "Osaka",
         coordinates: { lat: 34.6937, lng: 135.5023 },
         links: {
@@ -31,7 +31,7 @@ const itineraryData = [
                 { name: "Dotonbori", url: "https://www.google.com/maps/place/Dotonbori" }
             ],
             transport: [
-                { name: "Nankai Rap:t", url: "https://www.howto-osaka.com/en/ticket/ticket/rapit.html" }
+                { name: "Nankai Airport Express", url: "https://www.howto-osaka.com/en/ticket/ticket/rapit.html" }
             ]
         }
     },
@@ -39,9 +39,9 @@ const itineraryData = [
         day: 3,
         date: "20/set",
         title: "Himeji Castle",
-        activity: "Visita ao Castelo Himeji (Experiência Shinkansen)",
-        transport: "🚄 Shinkansen (Útil e Veloz)",
-        accommodation: "Osaka (Namba)",
+        activity: "Visita ao Castelo Himeji",
+        transport: "🚆 JR Special Rapid Osaka ↔ Himeji",
+        accommodation: "KATSU HOTEL 新今宫",
         city: "Himeji",
         coordinates: { lat: 34.8394, lng: 134.6939 },
         links: {
@@ -50,17 +50,17 @@ const itineraryData = [
                 { name: "Himeji Castle", url: "https://www.google.com/maps/place/Himeji+Castle" }
             ],
             transport: [
-                { name: "Shinkansen Osaka-Himeji", url: "https://www.hyperdia.com/" }
+                { name: "JR Special Rapid", url: "https://www.hyperdia.com/" }
             ]
         }
     },
     {
         day: 4,
         date: "21/set",
-        title: "Nijigen no Mori",
+        title: "Nijigen no Mori (Naruto/Godzilla)",
         activity: "Parque Naruto/Godzilla",
-        transport: "Autocarro Direto (Namba/Umeda)",
-        accommodation: "Osaka (Namba)",
+        transport: "🚌 Highway Bus → Awaji",
+        accommodation: "KATSU HOTEL 新今宫",
         city: "Awaji Island",
         coordinates: { lat: 34.4695, lng: 134.8961 },
         links: {
@@ -76,10 +76,10 @@ const itineraryData = [
     {
         day: 5,
         date: "22/set",
-        title: "Kyoto: Gion e Pontocho",
+        title: "Kyoto: Gion, Higashiyama e Pontocho",
         activity: "Bairros históricos de Kyoto",
-        transport: "JR Special Rapid (Comboio Local)",
-        accommodation: "Kyoto",
+        transport: "🚆 JR Special Rapid Osaka → Kyoto",
+        accommodation: "Sotetsu Fresa Inn Kyoto",
         city: "Kyoto",
         coordinates: { lat: 35.0116, lng: 135.7681 },
         links: {
@@ -89,17 +89,17 @@ const itineraryData = [
                 { name: "Pontocho", url: "https://www.google.com/maps/place/Pontocho" }
             ],
             transport: [
-                { name: "Horários JR Osaka-Kyoto", url: "https://www.hyperdia.com/" }
+                { name: "JR Special Rapid", url: "https://www.hyperdia.com/" }
             ]
         }
     },
     {
         day: 6,
         date: "23/set",
-        title: "Nara e Fushimi Inari",
+        title: "Fushimi Inari cedo + Nara",
         activity: "Veados de Nara e Templo Fushimi Inari",
-        transport: "Comboios Locais (JR ou Kintetsu)",
-        accommodation: "Kyoto",
+        transport: "🚆 JR Nara Line + Miyakoji Rapid",
+        accommodation: "Sotetsu Fresa Inn Kyoto",
         city: "Nara/Kyoto",
         coordinates: { lat: 34.6851, lng: 135.8050 },
         links: {
@@ -109,17 +109,17 @@ const itineraryData = [
                 { name: "Fushimi Inari", url: "https://www.google.com/maps/place/Fushimi+Inari+Taisha" }
             ],
             transport: [
-                { name: "Horários Kyoto-Nara", url: "https://www.hyperdia.com/" }
+                { name: "JR Nara Line + Miyakoji Rapid", url: "https://www.hyperdia.com/" }
             ]
         }
     },
     {
         day: 7,
         date: "24/set",
-        title: "Arashiyama → Tóquio",
-        activity: "Bambus de Arashiyama + Viagem noturna",
-        transport: "🚌 Autocarro Noturno (Night Bus)",
-        accommodation: "Noite no Bus",
+        title: "Arashiyama (Bambus) → Tokyo",
+        activity: "Bambus de Arashiyama + viagem noturna",
+        transport: "🚌 Autocarro Noturno Kyoto → Tokyo",
+        accommodation: "🚌 Noite no Bus",
         city: "Kyoto/Tokyo",
         coordinates: { lat: 35.0094, lng: 135.6686 },
         links: {
@@ -128,17 +128,17 @@ const itineraryData = [
                 { name: "Arashiyama Bamboo Grove", url: "https://www.google.com/maps/place/Arashiyama+Bamboo+Grove" }
             ],
             transport: [
-                { name: "Willer Express (Night Bus)", url: "https://willerexpress.com/en/" }
+                { name: "Night Bus Kyoto-Tokyo", url: "https://willerexpress.com/en/" }
             ]
         }
     },
     {
         day: 8,
         date: "25/set",
-        title: "Akihabara",
-        activity: "Mandarake e Surugaya - Lojas de anime/manga",
-        transport: "Metro (Cartão IC / Suica)",
-        accommodation: "Tóquio (Ikebukuro)",
+        title: "Akihabara: Mandarake e Surugaya",
+        activity: "Mandarake e Surugaya - lojas de anime/manga",
+        transport: "🚇 Metro / JR + IC Card",
+        accommodation: "Kimi Ryokan - Ikebukuro",
         city: "Tokyo",
         coordinates: { lat: 35.6983, lng: 139.7731 },
         links: {
@@ -148,17 +148,17 @@ const itineraryData = [
                 { name: "Surugaya", url: "https://www.google.com/maps/search/Surugaya+Akihabara" }
             ],
             transport: [
-                { name: "Tokyo Metro", url: "https://www.tokyometro.jp/en/" }
+                { name: "Tokyo Metro / JR", url: "https://www.tokyometro.jp/en/" }
             ]
         }
     },
     {
         day: 9,
         date: "26/set",
-        title: "Ikebukuro",
+        title: "Animate Ikebukuro e Sunshine City",
         activity: "Animate Ikebukuro e Sunshine City",
-        transport: "Metro",
-        accommodation: "Tóquio (Ikebukuro)",
+        transport: "🚇 Metro / JR",
+        accommodation: "Kimi Ryokan - Ikebukuro",
         city: "Tokyo",
         coordinates: { lat: 35.7295, lng: 139.7109 },
         links: {
@@ -173,10 +173,10 @@ const itineraryData = [
     {
         day: 10,
         date: "27/set",
-        title: "Harajuku e Shibuya",
+        title: "Harajuku e Mugiwara Store Shibuya",
         activity: "Harajuku + Mugiwara Store Shibuya",
-        transport: "Metro",
-        accommodation: "Tóquio (Ikebukuro)",
+        transport: "🚇 Metro / JR",
+        accommodation: "Kimi Ryokan - Ikebukuro",
         city: "Tokyo",
         coordinates: { lat: 35.6702, lng: 139.7026 },
         links: {
@@ -191,10 +191,10 @@ const itineraryData = [
     {
         day: 11,
         date: "28/set",
-        title: "Odaiba e Templo Gotokuji",
-        activity: "Odaiba (ilha futurística) e Templo dos Gatos",
-        transport: "Yurikamome Line / Metro",
-        accommodation: "Tóquio (Ikebukuro)",
+        title: "Odaiba e Templo Gotokuji (Gatos)",
+        activity: "Odaiba e Templo dos Gatos",
+        transport: "🚆 Yurikamome + Odakyu",
+        accommodation: "Kimi Ryokan - Ikebukuro",
         city: "Tokyo",
         coordinates: { lat: 35.6268, lng: 139.7744 },
         links: {
@@ -204,17 +204,17 @@ const itineraryData = [
                 { name: "Gotokuji Temple", url: "https://www.google.com/maps/place/Gotokuji+Temple" }
             ],
             transport: [
-                { name: "Yurikamome Line", url: "https://www.yurikamome.co.jp/en/" }
+                { name: "Yurikamome + Odakyu", url: "https://www.yurikamome.co.jp/en/" }
             ]
         }
     },
     {
         day: 12,
         date: "29/set",
-        title: "Viagem para Kawaguchiko",
+        title: "Tokyo → Kawaguchiko (Fuji)",
         activity: "Viagem para a região do Monte Fuji",
-        transport: "🚌 Autocarro Highway (via Shinjuku)",
-        accommodation: "Kawaguchiko",
+        transport: "🚌 Highway Bus Shinjuku → Kawaguchiko",
+        accommodation: "Hotel Mifujien",
         city: "Kawaguchiko",
         coordinates: { lat: 35.5087, lng: 138.7641 },
         links: {
@@ -230,10 +230,10 @@ const itineraryData = [
     {
         day: 13,
         date: "30/set",
-        title: "Monte Fuji",
+        title: "Monte Fuji: Lagos + Onsen",
         activity: "Lagos e Onsen na região do Fuji",
-        transport: "Autocarro Local (Red Line)",
-        accommodation: "Kawaguchiko",
+        transport: "🚌 Autocarro Local (Red Line)",
+        accommodation: "Fuji Lake Hotel",
         city: "Kawaguchiko",
         coordinates: { lat: 35.3606, lng: 138.7278 },
         links: {
@@ -250,29 +250,29 @@ const itineraryData = [
     {
         day: 14,
         date: "01/out",
-        title: "Kawaguchiko → Gamagori",
-        activity: "Viagem para Gamagori (Sunny + Memorial)",
-        transport: "Autocarro p/ Mishima + Comboio Local",
-        accommodation: "Gamagori",
-        city: "Gamagori",
-        coordinates: { lat: 34.8270, lng: 137.2239 },
+        title: "Kawaguchiko → Haneda",
+        activity: "Viagem para Haneda",
+        transport: "🚌 Autocarro Direto Kawaguchiko → Haneda",
+        accommodation: "KC-III - Haneda Airport",
+        city: "Haneda",
+        coordinates: { lat: 35.5545, lng: 139.7810 },
         links: {
-            maps: "https://www.google.com/maps/place/Gamagori",
+            maps: "https://www.google.com/maps/place/Haneda+Airport",
             locations: [
-                { name: "Gamagori", url: "https://www.google.com/maps/place/Gamagori" }
+                { name: "Haneda Airport", url: "https://www.google.com/maps/place/Haneda+Airport" }
             ],
             transport: [
-                { name: "Horários", url: "https://www.hyperdia.com/" }
+                { name: "Kawaguchiko Airport Bus", url: "https://www.google.com/maps/search/Kawaguchiko+Haneda+bus" }
             ]
         }
     },
     {
         day: 15,
         date: "02/out",
-        title: "Gamagori → Kumamoto",
-        activity: "Viagem longa para Kumamoto",
-        transport: "Comboio p/ Nagoya + ✈️ Voo Low Cost",
-        accommodation: "Kumamoto",
+        title: "Haneda → Kumamoto / Estátuas One Piece — Parte 1",
+        activity: "Voo Haneda → Kumamoto e estátuas One Piece",
+        transport: "✈️ Voo Haneda → Kumamoto",
+        accommodation: "DOMO Hotel 大津 - Kumamoto",
         city: "Kumamoto",
         coordinates: { lat: 32.8031, lng: 130.7079 },
         links: {
@@ -281,18 +281,17 @@ const itineraryData = [
                 { name: "Kumamoto", url: "https://www.google.com/maps/place/Kumamoto" }
             ],
             transport: [
-                { name: "Peach Aviation", url: "https://www.flypeach.com/en" },
-                { name: "Jetstar Japan", url: "https://www.jetstar.com/jp/en/home" }
+                { name: "Haneda → Kumamoto", url: "https://www.google.com/flights/" }
             ]
         }
     },
     {
         day: 16,
         date: "03/out",
-        title: "Estátuas One Piece (Parte 1)",
-        activity: "Tour pelas estátuas One Piece em Kumamoto",
-        transport: "🚗 Carro Alugado (Essencial)",
-        accommodation: "Kumamoto",
+        title: "Estátuas One Piece — Parte 2",
+        activity: "Continuação do tour One Piece",
+        transport: "🚗 Carro Alugado",
+        accommodation: "DOMO Hotel 大津 - Kumamoto",
         city: "Kumamoto",
         coordinates: { lat: 32.8031, lng: 130.7079 },
         links: {
@@ -308,27 +307,10 @@ const itineraryData = [
     {
         day: 17,
         date: "04/out",
-        title: "Estátuas One Piece (Parte 2)",
-        activity: "Continuação do tour One Piece",
-        transport: "Carro Alugado",
-        accommodation: "Kumamoto",
-        city: "Kumamoto",
-        coordinates: { lat: 32.8031, lng: 130.7079 },
-        links: {
-            maps: "https://www.google.com/maps/search/One+Piece+Statues+Kumamoto",
-            locations: [
-                { name: "One Piece Statues Map", url: "https://onepiecekumamoto.com/" }
-            ],
-            transport: []
-        }
-    },
-    {
-        day: 18,
-        date: "05/out",
-        title: "Viagem para Beppu",
-        activity: "Onsens/Termas de Beppu",
-        transport: "Autocarro Kyushuganko (Barato)",
-        accommodation: "Beppu",
+        title: "Kumamoto → Beppu (Onsens/Termas)",
+        activity: "Viagem para Beppu",
+        transport: "🚌 Highway Bus Yamabiko",
+        accommodation: "JAPANESE IN HOTEL MATSUKISO - Beppu",
         city: "Beppu",
         coordinates: { lat: 33.2845, lng: 131.4912 },
         links: {
@@ -338,16 +320,34 @@ const itineraryData = [
                 { name: "Beppu Hell Tour", url: "https://www.google.com/maps/search/Beppu+Jigoku" }
             ],
             transport: [
-                { name: "Kyushu Bus", url: "https://www.google.com/maps/search/Kyushu+bus" }
+                { name: "Highway Bus Yamabiko", url: "https://www.google.com/maps/search/Beppu+bus" }
             ]
+        }
+    },
+    {
+        day: 18,
+        date: "05/out",
+        title: "Beppu (Onsens/Termas)",
+        activity: "Onsens e termas de Beppu",
+        transport: "🚶 / 🚌 Transporte Local",
+        accommodation: "JAPANESE IN HOTEL MATSUKISO - Beppu",
+        city: "Beppu",
+        coordinates: { lat: 33.2845, lng: 131.4912 },
+        links: {
+            maps: "https://www.google.com/maps/place/Beppu",
+            locations: [
+                { name: "Beppu Onsen", url: "https://www.google.com/maps/search/Beppu+Onsen" },
+                { name: "Beppu Hell Tour", url: "https://www.google.com/maps/search/Beppu+Jigoku" }
+            ],
+            transport: []
         }
     },
     {
         day: 19,
         date: "06/out",
-        title: "Beppu → Fukuoka",
+        title: "Beppu → Fukuoka + Hakata Ramen",
         activity: "Fukuoka - Hakata Ramen",
-        transport: "Autocarro Highway (Lush Bus)",
+        transport: "🚌 Highway Bus",
         accommodation: "Fukuoka",
         city: "Fukuoka",
         coordinates: { lat: 33.5904, lng: 130.4017 },
@@ -364,24 +364,27 @@ const itineraryData = [
     {
         day: 20,
         date: "07/out",
-        title: "Madrid → Osaka",
-        activity: "Voo Internacional",
-        transport: "✈️ Avião",
-        accommodation: "Noite a bordo",
-        city: "Madrid/Osaka",
+        title: "Fukuoka → Osaka",
+        activity: "Viagem para Osaka",
+        transport: "🚄 Shinkansen Hakata → Shin-Osaka",
+        accommodation: "Y&Y NAMBA HOTEL Osaka",
+        city: "Osaka",
         coordinates: { lat: 34.6937, lng: 135.5023 },
         links: {
-            maps: "https://www.google.com/maps/place/Osaka,+Japan",
-            transport: []
+            maps: "https://www.google.com/maps/place/Osaka",
+            locations: [],
+            transport: [
+                { name: "Shinkansen Hakata-Shin-Osaka", url: "https://www.hyperdia.com/" }
+            ]
         }
     },
     {
         day: 21,
         date: "08/out",
-        title: "Universal Studios Japan",
+        title: "Universal Studios Japan (USJ)",
         activity: "USJ - Parque Temático",
-        transport: "Comboio Local (JR Yumesaki Line)",
-        accommodation: "Osaka (Namba)",
+        transport: "🚆 JR Yumesaki Line",
+        accommodation: "Y&Y NAMBA HOTEL Osaka",
         city: "Osaka",
         coordinates: { lat: 34.6654, lng: 135.4322 },
         links: {
@@ -390,7 +393,7 @@ const itineraryData = [
                 { name: "Universal Studios Japan", url: "https://www.usj.co.jp/web/en/us" }
             ],
             transport: [
-                { name: "Como chegar ao USJ", url: "https://www.usj.co.jp/web/en/us/access" }
+                { name: "JR Yumesaki Line", url: "https://www.usj.co.jp/web/en/us/access" }
             ]
         }
     },
@@ -398,9 +401,9 @@ const itineraryData = [
         day: 22,
         date: "09/out",
         title: "Den Den Town e Padaria Parine",
-        activity: "Shopping de eletrónicos e anime + Padaria One Piece",
-        transport: "Metro",
-        accommodation: "Osaka (Namba)",
+        activity: "Shopping de eletrónicos e anime + padaria One Piece",
+        transport: "🚇 Metro",
+        accommodation: "Y&Y NAMBA HOTEL Osaka",
         city: "Osaka",
         coordinates: { lat: 34.6568, lng: 135.5062 },
         links: {
@@ -410,23 +413,6 @@ const itineraryData = [
                 { name: "Padaria Parine", url: "https://www.google.com/maps/search/Parine+Bakery+Osaka" }
             ],
             transport: []
-        }
-    },
-    {
-        day: 23,
-        date: "10/out",
-        title: "Osaka → Madrid",
-        activity: "Regresso a casa",
-        transport: "Nankai Rap:t + Avião",
-        accommodation: "Fim da Viagem",
-        city: "Osaka",
-        coordinates: { lat: 34.4348, lng: 135.2440 },
-        links: {
-            maps: "https://www.google.com/maps/place/Kansai+International+Airport",
-            locations: [],
-            transport: [
-                { name: "Kansai Airport", url: "https://www.kansai-airport.or.jp/en/" }
-            ]
         }
     }
 ];
@@ -442,9 +428,28 @@ let removedDefaultLocations = {}; // Armazena índices de locais originais remov
 let customNotes = {}; // Armazena notas editadas por dia
 let customAccommodations = {}; // Armazena dormidas personalizadas por dia
 let customAccommodationLocations = {}; // Armazena locais extra associados à dormida por dia
+let customTitles = {}; // Armazena títulos personalizados por dia
+let customTransports = {}; // Armazena transportes personalizados por dia
 let interactiveMap = null;
 let userLocation = null;
 let mapMarkers = [];
+
+function escapeHtml(value) {
+    return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+}
+
+function getDisplayTitle(day) {
+    return customTitles[day.day] || day.title;
+}
+
+function getDisplayTransport(day) {
+    return customTransports[day.day] || day.transport;
+}
 
 // Initialize App
 document.addEventListener('DOMContentLoaded', () => {
@@ -453,6 +458,8 @@ document.addEventListener('DOMContentLoaded', () => {
     loadCustomNotes();
     loadCustomAccommodations();
     loadCustomAccommodationLocations();
+    loadCustomTitles();
+    loadCustomTransports();
     loadDarkMode();
     initializeApp();
     registerServiceWorker();
@@ -522,6 +529,8 @@ function renderDaysList(filteredData = null) {
     daysList.innerHTML = data.map(day => {
         const hasCustomLocations = customLocations[day.day] && customLocations[day.day].length > 0;
         const customCount = hasCustomLocations ? customLocations[day.day].length : 0;
+        const displayTitle = escapeHtml(getDisplayTitle(day));
+        const displayTransport = escapeHtml(getDisplayTransport(day));
         
         // Count removed default locations
         const removedIndices = removedDefaultLocations[day.day] || [];
@@ -535,12 +544,12 @@ function renderDaysList(filteredData = null) {
                 <div class="day-date">${day.date}</div>
             </div>
             <div class="day-title">
-                ${day.title}
+                ${displayTitle}
                 ${hasCustomLocations ? `<span class="custom-badge" title="${customCount} local(is) personalizado(s)">⭐ ${customCount}</span>` : ''}
                 ${totalCount > 0 ? `<span class="location-count" title="${totalCount} locais no total">📍 ${totalCount}</span>` : ''}
             </div>
             <div class="day-location">📍 ${day.city}</div>
-            <div class="day-transport">${day.transport}</div>
+            <div class="day-transport">${displayTransport}</div>
         </div>
     `}).join('');
 }
@@ -563,7 +572,7 @@ function setupDaySelector() {
     getSortedItineraryData().forEach(day => {
         const option = document.createElement('option');
         option.value = day.day;
-        option.textContent = `Dia ${day.day} - ${day.date} - ${day.title}`;
+        option.textContent = `Dia ${day.day} - ${day.date} - ${getDisplayTitle(day)}`;
         daySelect.appendChild(option);
     });
     
@@ -632,10 +641,10 @@ function setupSearch() {
         }
         
         const filtered = itineraryData.filter(day => 
-            day.title.toLowerCase().includes(query) ||
+            getDisplayTitle(day).toLowerCase().includes(query) ||
             day.activity.toLowerCase().includes(query) ||
             day.city.toLowerCase().includes(query) ||
-            day.transport.toLowerCase().includes(query)
+            getDisplayTransport(day).toLowerCase().includes(query)
         );
         
         renderDaysList(filtered);
@@ -658,6 +667,8 @@ function openDayModal(dayNumber) {
     const modal = document.getElementById('dayModal');
     const modalBody = document.getElementById('modalBody');
     const availableDays = getSortedItineraryData().filter(item => item.day !== dayNumber);
+    const customTitle = escapeHtml(getDisplayTitle(day));
+    const customTransport = escapeHtml(getDisplayTransport(day));
     
     // Get custom locations for this day
     const customLocs = customLocations[dayNumber] || [];
@@ -689,7 +700,7 @@ function openDayModal(dayNumber) {
     
     modalBody.innerHTML = `
         <div class="modal-day-header">
-            <div class="modal-day-title">Dia ${day.day}: ${day.title}</div>
+            <div class="modal-day-title">Dia ${day.day}: ${customTitle}</div>
             <div class="modal-day-info">
                 📅 ${day.date} | 📍 ${day.city}
             </div>
@@ -706,8 +717,29 @@ function openDayModal(dayNumber) {
                 <label for="moveDaySelect-${dayNumber}" style="display: block; margin-bottom: 0.5rem; font-weight: bold; color: var(--text-primary);">Mover este card para:</label>
                 <select id="moveDaySelect-${dayNumber}" class="day-select" style="width: 100%;">
                     <option value="">Selecionar novo dia...</option>
-                    ${availableDays.map(item => `<option value="${item.day}">Dia ${item.day} - ${item.date} - ${item.title}</option>`).join('')}
+                    ${availableDays.map(item => `<option value="${item.day}">Dia ${item.day} - ${item.date} - ${escapeHtml(getDisplayTitle(item))}</option>`).join('')}
                 </select>
+            </div>
+        </div>
+
+        <div class="links-section">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <h3>🏷️ Título</h3>
+                <button onclick="toggleEditTitle(${dayNumber})" class="icon-btn" title="Editar título">✏️</button>
+            </div>
+            <div id="titleDisplay-${dayNumber}" class="notes-display">
+                ${customTitle}
+            </div>
+            <div id="titleEdit-${dayNumber}" class="notes-edit" style="display: none;">
+                <input id="titleText-${dayNumber}" class="form-input" value="${customTitle}">
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                    <button onclick="saveTitle(${dayNumber})" class="link-btn primary" style="flex: 1;">
+                        💾 Guardar
+                    </button>
+                    <button onclick="cancelEditTitle(${dayNumber})" class="link-btn cancel" style="flex: 1;">
+                        ✕ Cancelar
+                    </button>
+                </div>
             </div>
         </div>
         
@@ -741,8 +773,24 @@ function openDayModal(dayNumber) {
         </div>
         
         <div class="links-section">
-            <h3>🚇 Transporte</h3>
-            <p>${day.transport}</p>
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+                <h3>🚇 Transporte</h3>
+                <button onclick="toggleEditTransport(${dayNumber})" class="icon-btn" title="Editar transporte">✏️</button>
+            </div>
+            <div id="transportDisplay-${dayNumber}" class="notes-display">
+                ${customTransport}
+            </div>
+            <div id="transportEdit-${dayNumber}" class="notes-edit" style="display: none;">
+                <input id="transportText-${dayNumber}" class="form-input" value="${customTransport}">
+                <div style="display: flex; gap: 0.5rem; margin-top: 0.5rem;">
+                    <button onclick="saveTransport(${dayNumber})" class="link-btn primary" style="flex: 1;">
+                        💾 Guardar
+                    </button>
+                    <button onclick="cancelEditTransport(${dayNumber})" class="link-btn cancel" style="flex: 1;">
+                        ✕ Cancelar
+                    </button>
+                </div>
+            </div>
             ${day.links.transport.map(link => `
                 <a href="${link.url}" target="_blank" class="link-btn">${link.name} →</a>
             `).join('')}
@@ -971,6 +1019,10 @@ function moveDayCard(dayNumber) {
     const targetDayNotes = customNotes[targetDay];
     const sourceDayAccommodation = customAccommodations[dayNumber];
     const targetDayAccommodation = customAccommodations[targetDay];
+    const sourceDayTitle = customTitles[dayNumber];
+    const targetDayTitle = customTitles[targetDay];
+    const sourceDayTransport = customTransports[dayNumber];
+    const targetDayTransport = customTransports[targetDay];
 
     itineraryData[sourceIndex] = { ...targetDayData, day: dayNumber };
     itineraryData[targetIndex] = { ...sourceDay, day: targetDay };
@@ -995,10 +1047,22 @@ function moveDayCard(dayNumber) {
         customAccommodations[targetDay] = sourceDayAccommodation;
     }
 
+    if (sourceDayTitle || targetDayTitle) {
+        customTitles[dayNumber] = targetDayTitle;
+        customTitles[targetDay] = sourceDayTitle;
+    }
+
+    if (sourceDayTransport || targetDayTransport) {
+        customTransports[dayNumber] = targetDayTransport;
+        customTransports[targetDay] = sourceDayTransport;
+    }
+
     saveCustomLocations();
     saveRemovedDefaultLocations();
     saveCustomNotes();
     saveCustomAccommodations();
+    saveCustomTitles();
+    saveCustomTransports();
 
     renderDaysList();
     openDayModal(dayNumber);
@@ -1208,6 +1272,102 @@ function saveNotes(dayNumber) {
 function cancelEditNotes(dayNumber) {
     const display = document.getElementById(`notesDisplay-${dayNumber}`);
     const edit = document.getElementById(`notesEdit-${dayNumber}`);
+    display.style.display = 'block';
+    edit.style.display = 'none';
+}
+
+function loadCustomTitles() {
+    const saved = localStorage.getItem('customTitles');
+    if (saved) {
+        try {
+            customTitles = JSON.parse(saved);
+        } catch (e) {
+            console.error('Erro ao carregar títulos personalizados:', e);
+            customTitles = {};
+        }
+    }
+}
+
+function saveCustomTitles() {
+    localStorage.setItem('customTitles', JSON.stringify(customTitles));
+}
+
+function toggleEditTitle(dayNumber) {
+    const display = document.getElementById(`titleDisplay-${dayNumber}`);
+    const edit = document.getElementById(`titleEdit-${dayNumber}`);
+    display.style.display = 'none';
+    edit.style.display = 'block';
+    document.getElementById(`titleText-${dayNumber}`).focus();
+}
+
+function saveTitle(dayNumber) {
+    const text = document.getElementById(`titleText-${dayNumber}`).value.trim();
+
+    if (!text) {
+        delete customTitles[dayNumber];
+        saveCustomTitles();
+        openDayModal(dayNumber);
+        renderDaysList();
+        return;
+    }
+
+    customTitles[dayNumber] = text;
+    saveCustomTitles();
+    openDayModal(dayNumber);
+    renderDaysList();
+}
+
+function cancelEditTitle(dayNumber) {
+    const display = document.getElementById(`titleDisplay-${dayNumber}`);
+    const edit = document.getElementById(`titleEdit-${dayNumber}`);
+    display.style.display = 'block';
+    edit.style.display = 'none';
+}
+
+function loadCustomTransports() {
+    const saved = localStorage.getItem('customTransports');
+    if (saved) {
+        try {
+            customTransports = JSON.parse(saved);
+        } catch (e) {
+            console.error('Erro ao carregar transportes personalizados:', e);
+            customTransports = {};
+        }
+    }
+}
+
+function saveCustomTransports() {
+    localStorage.setItem('customTransports', JSON.stringify(customTransports));
+}
+
+function toggleEditTransport(dayNumber) {
+    const display = document.getElementById(`transportDisplay-${dayNumber}`);
+    const edit = document.getElementById(`transportEdit-${dayNumber}`);
+    display.style.display = 'none';
+    edit.style.display = 'block';
+    document.getElementById(`transportText-${dayNumber}`).focus();
+}
+
+function saveTransport(dayNumber) {
+    const text = document.getElementById(`transportText-${dayNumber}`).value.trim();
+
+    if (!text) {
+        delete customTransports[dayNumber];
+        saveCustomTransports();
+        openDayModal(dayNumber);
+        renderDaysList();
+        return;
+    }
+
+    customTransports[dayNumber] = text;
+    saveCustomTransports();
+    openDayModal(dayNumber);
+    renderDaysList();
+}
+
+function cancelEditTransport(dayNumber) {
+    const display = document.getElementById(`transportDisplay-${dayNumber}`);
+    const edit = document.getElementById(`transportEdit-${dayNumber}`);
     display.style.display = 'block';
     edit.style.display = 'none';
 }

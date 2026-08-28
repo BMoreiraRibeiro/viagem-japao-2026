@@ -1,63 +1,32 @@
-# 🇯🇵 Viagem Japão 2026 – Itinerário Final "Budget & One Piece"
-**Datas:** 18 de Setembro a 10 de Outubro  
-**Foco:** One Piece, Anime, Onsens e Economia Inteligente.
+# 🇯🇵 Viagem Japão 2026
 
----
+## Itinerário final
 
-## 📅 Tabela de Itinerário Diário
-
-| Dia | Data | Atividade / Onde Visitar | Transporte Sugerido (Poupança) | Dormida |
+| Dia | Data | Atividade / Onde Visitar | Transporte | Dormida |
 | :--- | :--- | :--- | :--- | :--- |
-| **1** | 18/set | Fukuoka → Osaka | **✈️ Voo Low Cost** (Peach/Jetstar) | Osaka (Namba) |
-| **2** | 19/set | Chegada, **The Much Café** e Dotonbori | Nankai Rap:t (Comboio Aeroporto) | Osaka (Namba) |
-| **3** | 20/set | **Himeji Castle (A Experiência!)** | **🚄 Shinkansen** (Útil e Veloz) | Osaka (Namba) |
-| **4** | 21/set | **Nijigen no Mori** (Naruto/Godzilla) | Autocarro Direto (Namba/Umeda) | Osaka (Namba) |
-| **5** | 22/set | **Kyoto**: Gion e Pontocho | JR Special Rapid (Comboio Local) | Kyoto |
-| **6** | 23/set | **Nara** (Veados) e **Fushimi Inari** | Comboios Locais (JR ou Kintetsu) | Kyoto |
-| **7** | 24/set | **Arashiyama** (Bambus) → Viagem p/ Tóquio | **🚌 Autocarro Noturno (Night Bus)** | Noite no Bus |
-| **8** | 25/set | **Akihabara**: Mandarake e Surugaya | Metro (Cartão IC / Suica) | Tóquio (Ikebukuro) |
-| **9** | 26/set | **Animate Ikebukuro** e Sunshine City | Metro | Tóquio (Ikebukuro) |
-| **10** | 27/set | **Harajuku** e Mugiwara Store Shibuya | Metro | Tóquio (Ikebukuro) |
-| **11** | 28/set | **Odaiba** e Templo Gotokuji (Gatos) | Yurikamome Line / Metro | Tóquio (Ikebukuro) |
-| **12** | 29/set | Viagem para **Kawaguchiko (Fuji)** | **🚌 Autocarro Highway** (via Shinjuku) | Kawaguchiko |
-| **13** | 30/set | **Monte Fuji**: Lagos e Onsen | Autocarro Local (Red Line) | Kawaguchiko |
-| **14** | 01/out | Fuji → **Gamagori** (**Sunny + Memorial**) | Autocarro p/ Mishima + Comboio Local | Gamagori |
-| **15** | 02/out | Gamagori → **Kumamoto** | Comboio p/ Nagoya + **✈️ Voo Low Cost** | Kumamoto |
-| **16** | 03/out | **Estátuas One Piece (Parte 1)** | **🚗 Carro Alugado** (Essencial) | Kumamoto |
-| **17** | 04/out | **Estátuas One Piece (Parte 2)** | Carro Alugado | Kumamoto |
-| **18** | 05/out | Viagem para **Beppu** (Onsens/Termas) | Autocarro Kyushuganko (Barato) | Beppu |
-| **19** | 06/out | Beppu → **Fukuoka** (Hakata Ramen) | Autocarro Highway (Lush Bus) | Fukuoka |
-| **20** | 07/out | Madrid → Osaka (Voo Internacional) | ✈️ Avião | Noite a bordo |
-| **21** | 08/out | **Universal Studios Japan (USJ)** | Comboio Local (JR Yumesaki Line) | Osaka (Namba) |
-| **22** | 09/out | Den Den Town e **Padaria Parine** | Metro | Osaka (Namba) |
-| **23** | 10/out | Osaka → Madrid | Nankai Rap:t | Fim da Viagem |
+| 1 | 18/set | Madrid → Osaka (Voo Internacional) | ✈️ Voo Internacional | ✈️ Noite a bordo |
+| 2 | 19/set | Chegada → The Much Café → Dotonbori | 🚆 Nankai Airport Express → Shin-Imamiya | KATSU HOTEL 新今宫 |
+| 3 | 20/set | Himeji Castle | 🚆 JR Special Rapid Osaka ↔ Himeji | KATSU HOTEL 新今宫 |
+| 4 | 21/set | Nijigen no Mori (Naruto/Godzilla) | 🚌 Highway Bus → Awaji | KATSU HOTEL 新今宫 |
+| 5 | 22/set | Kyoto: Gion, Higashiyama e Pontocho | 🚆 JR Special Rapid Osaka → Kyoto | Sotetsu Fresa Inn Kyoto |
+| 6 | 23/set | Fushimi Inari cedo + Nara | 🚆 JR Nara Line + Miyakoji Rapid | Sotetsu Fresa Inn Kyoto |
+| 7 | 24/set | Arashiyama (Bambus) → Tokyo | 🚌 Autocarro Noturno Kyoto → Tokyo | 🚌 Noite no Bus |
+| 8 | 25/set | Akihabara: Mandarake e Surugaya | 🚇 Metro / JR + IC Card | Kimi Ryokan - Ikebukuro |
+| 9 | 26/set | Animate Ikebukuro e Sunshine City | 🚇 Metro / JR | Kimi Ryokan - Ikebukuro |
+| 10 | 27/set | Harajuku e Mugiwara Store Shibuya | 🚇 Metro / JR | Kimi Ryokan - Ikebukuro |
+| 11 | 28/set | Odaiba e Templo Gotokuji (Gatos) | 🚆 Yurikamome + Odakyu | Kimi Ryokan - Ikebukuro |
+| 12 | 29/set | Tokyo → Kawaguchiko (Fuji) | 🚌 Highway Bus Shinjuku → Kawaguchiko | Hotel Mifujien |
+| 13 | 30/set | Monte Fuji: Lagos + Onsen | 🚌 Autocarro Local (Red Line) | Fuji Lake Hotel |
+| 14 | 01/out | Kawaguchiko → Haneda | 🚌 Autocarro Direto Kawaguchiko → Haneda | KC-III - Haneda Airport |
+| 15 | 02/out | Haneda → Kumamoto / Estátuas One Piece — Parte 1 | ✈️ Voo Haneda → Kumamoto | DOMO Hotel 大津 - Kumamoto |
+| 16 | 03/out | Estátuas One Piece — Parte 2 | 🚗 Carro Alugado | DOMO Hotel 大津 - Kumamoto |
+| 17 | 04/out | Kumamoto → Beppu (Onsens/Termas) | 🚌 Highway Bus Yamabiko | JAPANESE IN HOTEL MATSUKISO - Beppu |
+| 18 | 05/out | Beppu (Onsens/Termas) | 🚶 / 🚌 Transporte Local | JAPANESE IN HOTEL MATSUKISO - Beppu |
+| 19 | 06/out | Beppu → Fukuoka + Hakata Ramen | 🚌 Highway Bus | Fukuoka |
+| 20 | 07/out | Fukuoka → Osaka | 🚄 Shinkansen Hakata → Shin-Osaka | Y&Y NAMBA HOTEL Osaka |
+| 21 | 08/out | Universal Studios Japan (USJ) | 🚆 JR Yumesaki Line | Y&Y NAMBA HOTEL Osaka |
+| 22 | 09/out | Den Den Town e Padaria Parine | 🚇 Metro | Y&Y NAMBA HOTEL Osaka |
 
 ---
 
-## 💰 Dicas de Poupança e Logística
-
-### 1. Transportes Alternativos
-* **Autocarro Noturno (Dia 7):** Poupas o Shinkansen para Tóquio e uma noite de hotel. Recomenda-se a empresa **Willer Express**.
-* **Voos Low Cost (LCC):** Usa as companhias **Peach Aviation** ou **Jetstar Japan** para trajetos longos (Nagoya → Kumamoto e Fukuoka → Osaka).
-* **Autocarros de Curta Distância:** Para Kawaguchiko, Beppu e Fukuoka, os autocarros (*Highway Buses*) são confortáveis e custam menos de metade do comboio.
-
-### 2. A Experiência Shinkansen (Dia 21)
-* **Trajeto:** Osaka (Shin-Osaka) ↔ Himeji.
-* **Vantagem:** É a forma mais barata de sentir a velocidade real de **300 km/h** sem pagar passes caros.
-* **Dica:** Tenta apanhar o **Hello Kitty Shinkansen** que opera nesta linha (Linha Sanyo Shinkansen).
-
-### 3. One Piece em Kumamoto
-* **Carro:** Imprescindível para ver as 10 estátuas em 2 dias.
-* **Documentação:** Requer **Licença Internacional de Condução** (tirar em Madrid antes de ir).
-
-### 4. Pagamentos
-* **Cartão IC (Suica/Pasmo):** Adiciona à Apple/Google Wallet. Serve para metros em Osaka, Tóquio, Kyoto e Fukuoka, além de pagamentos em máquinas e lojas de conveniência.
-
----
-
-## 🏨 Sugestões de Alojamento (Económico 40-60€)
-* **Osaka:** Hotel Relief Namba Daikokucho / Sotetsu Fresa Inn Namba.
-* **Kyoto:** Travelodge Kyoto Shijo Omiya / Hop Inn Kyoto.
-* **Tóquio (Ikebukuro):** Hotel Wing International Select / Sakura Hotel.
-* **Kumamoto:** Nest Hotel Kumamoto / Dormy Inn (tem Onsen).
-* **Kawaguchiko:** Hotel Asafuji / K's House Mt. Fuji.
+Resumo da viagem: Osaka, Kyoto, Tóquio, Fuji, Kumamoto, Beppu, Fukuoka e regressa a Osaka antes do voo final de regresso a Madrid.
